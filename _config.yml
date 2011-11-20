@@ -1,0 +1,4 @@
+auto: Yes
+pygments: Yes
+safe: Yes
+exclude: [newpost.sh]

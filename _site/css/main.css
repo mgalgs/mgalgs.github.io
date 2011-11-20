@@ -1,0 +1,12 @@
+.brand {
+    font-family: 'Droid Sans Mono', sans-serif;
+}
+.cursor {
+    color: black;
+}
+.cursor .inverted {
+    color: white;
+}
+.clipboard {
+    display:none;
+}

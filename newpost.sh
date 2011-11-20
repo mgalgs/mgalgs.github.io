@@ -1,0 +1,20 @@
+#!/bin/sh
+
+MYEDITOR="emacsclient -n -a emacs"
+MYMARKUP=markdown
+
+if [[ $# -ne 1 ]]; then
+    echo "usage: $0 title"
+    exit 1
+fi
+
+newfile=_posts/$(date +%Y-%m-%d)-${1}.$MYMARKUP
+
+cat > $newfile <<EOF
+---
+layout: post
+title:$(for i in $(echo $1 | tr '-' ' '); do echo -n " ${i:0:1}" | tr '[:lower:]' '[:upper:]'; echo -n ${i:1}; done)
+---
+EOF
+
+$MYEDITOR $newfile
