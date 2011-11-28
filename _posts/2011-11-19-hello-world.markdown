@@ -48,7 +48,7 @@ public:
   int stuff();
 };
 
-Thing::stuff()
+int Thing::stuff()
 {
   return 42;
 }
