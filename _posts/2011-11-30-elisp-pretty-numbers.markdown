@@ -35,11 +35,11 @@ Usage:
 
 {% highlight scheme %}
 (my-thousands-separate 4324.32)
-"4,324.32"
+  ==> "4,324.32"
 (my-thousands-separate 42)
-"42"
+  ==> "42"
 (my-thousands-separate 929344324432444.0)
-"929,344,324,432,444.0"
+  ==> "929,344,324,432,444.0"
 {% endhighlight %}
 
 With that function in hand, I wrote a little convenience function for
