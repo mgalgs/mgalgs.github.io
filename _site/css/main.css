@@ -10,3 +10,10 @@
 .clipboard {
     display:none;
 }
+ul.posts li {
+    padding: 2px 0px;
+}
+span.tags-list {
+    font-family: 'Droid Sans Mono', sans-serif;
+    font-size: 11px;
+}

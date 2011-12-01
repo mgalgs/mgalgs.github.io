@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mitchel Humpherys :: Home</title>
+    <title>Mitchel Humpherys :: Senior Project Fun</title>
     <meta name="description" content="Professional blog of a feaster software engineer">
     <meta name="author" content="Mitchel Humpherys">
 
@@ -109,160 +109,11 @@
         <div class="row">
           <div class="span9">
             <div id="main-content">
-              <h3>Projects</h3>
-<ul class="unstyled posts">
-  
-  
-  <li>
-    <span class="label">30 Nov 2011</span>
-    <a href="/projects/wikipaper.html">WikiPaper</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      android
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  <li>
-    <span class="label">20 Nov 2011</span>
-    <a href="/projects/trackthatthing.html">Track That Thing</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      android, google app engine
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</ul>
+              <div class="page-header">
+  <h1>Senior Project Fun <small>23 Sep 2009</small></h1>
+</div>
 
-<h3>Posts</h3>
-<ul class="unstyled posts">
-  
-  
-  
-  
-  <li>
-    <span class="label">30 Nov 2011</span>
-    <a href="/2011/11/30/elisp-pretty-numbers.html">Elisp Pretty Numbers</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      elisp, emacs
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  <li>
-    <span class="label">19 Nov 2011</span>
-    <a href="/2011/11/19/hello-world.html">Hello, World!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">18 May 2010</span>
-    <a href="/2010/05/18/Maze-Solver%2C-Graduation%2C-and-Such-As.html">Maze Solver, Graduation, and Such As</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">04 Mar 2010</span>
-    <a href="/2010/03/04/On-to-the-next-one....html">On to the next one...</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">05 Dec 2009</span>
-    <a href="/2009/12/05/It%27s-alive%21%21%21-Almost-flying%21.html">It's alive!!! Almost flying!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">04 Dec 2009</span>
-    <a href="/2009/12/04/Starting-to-come-together....html">Starting to come together...</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">07 Oct 2009</span>
-    <a href="/2009/10/07/Xbee-and-sonar-working%21.html">Xbee and sonar working!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">30 Sep 2009</span>
-    <a href="/2009/09/30/It%27s-alive%21.html">It's alive!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">24 Sep 2009</span>
-    <a href="/2009/09/24/What-is-a-quadrotor%3F.html">What is a quadrotor?</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">23 Sep 2009</span>
-    <a href="/2009/09/23/Senior-Project-Fun.html">Senior Project Fun</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">17 Aug 2009</span>
-    <a href="/2009/08/17/Jobs-are-fun.html">Jobs are fun</a>
-    
-  </li>
-  
-  
-</ul>
+I'm a senior this year which means that I get to complete a senior project. I decided that for my project I'm going to build an autonomous quadrotor from scratch. My full project proposal can be found <a href="http://firsthome.homelinux.org/useful/MitchelHumpherys_SeniorProject.pdf">here</a>.<br /><br />I'm going to document the whole process on this blog, so let's get to it!<br /><br /><br /><h4>System Overview</h4><br />First, let me provide a quick run-down of the system I intend to develop:<br /><ul><br /><li>The system will fly autonomously</li><li>APIs in C and Python will be developed to control the quadrotor</li><li>The quadrotor will be constrained to vertical motion <span style="font-weight: bold;">see below</span></li><li>Onboard avionics: AVR microcontroller for flight control, MaxBotix sonar rangefinder for altitude estimation, 4 brushless motors (driven by ESCs which will be controlled by the AVR), and an XBee wireless module for the data link to the ground control station.</li><br /></ul><br /><br />I just finished building a guide-wire system that the quadrotor will fly on.<br /><br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://lh5.ggpht.com/_ERTez3oxg2I/SrrqjUkpDTI/AAAAAAAAAG4/d02S7pXE6v8/s800/2009-09-23%2021.41.18.jpg"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 253px; height: 336px;" src="http://lh5.ggpht.com/_ERTez3oxg2I/SrrqjUkpDTI/AAAAAAAAAG4/d02S7pXE6v8/s800/2009-09-23%2021.41.18.jpg" alt="" border="0" /></a><br />The guide-wire system<br /><br /><br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://lh6.ggpht.com/_ERTez3oxg2I/Srr4q2LEXjI/AAAAAAAAAHg/FYt7qPoOSEs/s144/2009-09-23%2022.29.04.jpg"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 144px; height: 108px;" src="http://lh6.ggpht.com/_ERTez3oxg2I/Srr4q2LEXjI/AAAAAAAAAHg/FYt7qPoOSEs/s144/2009-09-23%2022.29.04.jpg" alt="" border="0" /></a><br />The actual wire<br /><br /><br /><object width="445" height="364"><param name="movie" value="http://www.youtube.com/v/HPkGQc433Uo&amp;hl=en&amp;fs=1&amp;color1=0x2b405b&amp;color2=0x6b8ab6&amp;border=1"><param name="allowFullScreen" value="true"><param name="allowscriptaccess" value="always"><embed src="http://www.youtube.com/v/HPkGQc433Uo&amp;hl=en&amp;fs=1&amp;color1=0x2b405b&amp;color2=0x6b8ab6&amp;border=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="445" height="364"></embed></object><br />Sonnie demonstrating the guide-wire system<br /><br />That's it for now! The avionics shipped from sparkfun today so stay tuned for some zigbee+avr+sonar madness!!!!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/8243365953452498700-3755455710736144686?l=mgalgs.blogspot.com' alt='' /></div>
 
 
             </div>

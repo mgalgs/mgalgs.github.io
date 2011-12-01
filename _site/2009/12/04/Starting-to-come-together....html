@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mitchel Humpherys :: Home</title>
+    <title>Mitchel Humpherys :: Starting to come together...</title>
     <meta name="description" content="Professional blog of a feaster software engineer">
     <meta name="author" content="Mitchel Humpherys">
 
@@ -109,160 +109,11 @@
         <div class="row">
           <div class="span9">
             <div id="main-content">
-              <h3>Projects</h3>
-<ul class="unstyled posts">
-  
-  
-  <li>
-    <span class="label">30 Nov 2011</span>
-    <a href="/projects/wikipaper.html">WikiPaper</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      android
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  <li>
-    <span class="label">20 Nov 2011</span>
-    <a href="/projects/trackthatthing.html">Track That Thing</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      android, google app engine
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</ul>
+              <div class="page-header">
+  <h1>Starting to come together... <small>04 Dec 2009</small></h1>
+</div>
 
-<h3>Posts</h3>
-<ul class="unstyled posts">
-  
-  
-  
-  
-  <li>
-    <span class="label">30 Nov 2011</span>
-    <a href="/2011/11/30/elisp-pretty-numbers.html">Elisp Pretty Numbers</a>
-    
-    <span class="tags-list">
-      <span> :: </span>
-      elisp, emacs
-    </span>
-    
-  </li>
-  
-  
-  
-  
-  
-  <li>
-    <span class="label">19 Nov 2011</span>
-    <a href="/2011/11/19/hello-world.html">Hello, World!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">18 May 2010</span>
-    <a href="/2010/05/18/Maze-Solver%2C-Graduation%2C-and-Such-As.html">Maze Solver, Graduation, and Such As</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">04 Mar 2010</span>
-    <a href="/2010/03/04/On-to-the-next-one....html">On to the next one...</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">05 Dec 2009</span>
-    <a href="/2009/12/05/It%27s-alive%21%21%21-Almost-flying%21.html">It's alive!!! Almost flying!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">04 Dec 2009</span>
-    <a href="/2009/12/04/Starting-to-come-together....html">Starting to come together...</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">07 Oct 2009</span>
-    <a href="/2009/10/07/Xbee-and-sonar-working%21.html">Xbee and sonar working!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">30 Sep 2009</span>
-    <a href="/2009/09/30/It%27s-alive%21.html">It's alive!</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">24 Sep 2009</span>
-    <a href="/2009/09/24/What-is-a-quadrotor%3F.html">What is a quadrotor?</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">23 Sep 2009</span>
-    <a href="/2009/09/23/Senior-Project-Fun.html">Senior Project Fun</a>
-    
-  </li>
-  
-  
-  
-  <li>
-    <span class="label">17 Aug 2009</span>
-    <a href="/2009/08/17/Jobs-are-fun.html">Jobs are fun</a>
-    
-  </li>
-  
-  
-</ul>
+Well, my "helicopter framework" (which I have dubbed "sonton" in honor of my patient wife who has put up with me working on this thing day and night) is finally starting to come together. Pretty much the only thing that doesn't work is the actual flying part. Now, most people probably think that's the most important thing about a helicopter framework, and I guess I'd have to agree with them. However, from the standpoint of a cool project, I think I've got some pretty cool stuff going on even without the flight:<br /><br /><ul><li>Wireless communication from a Linux machine to an AVR microcontroller using two XBee modules</li><li>Accurate altitude reading with an AVR by reading the PWM signal coming out of a sonar sensor</li><li>A semi-complex, multi-threaded control station capable of sending altitude commands to the helicopter while listening for data over a UDP socket</li><li>Successful data link between a WiiMote controller and a Linux machine which talks to the control station</li></ul>Who needs flight?!? Just kidding, I still have a few days before the project deadline so I'm hoping to get the motors spinning before then, but between all my other final projects and studying for final exams it could be interesting...<br /><br />I'm using the <a href="http://github.com/abstrakraft/cwiid">cwiid</a> python module to interface with the WiiMote controller. It's laughably simple to get data and do cool things with the WiiMote using cwiid. Could make for some fun little projects...<br /><br />Here's a tiny example to read the pitch of the controller:<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace; font-size: x-small;"><br />   import cwiid<br />   print 'place wiimote in discoverable mode (press 1 and 2)...'<br />   wiimote = cwiid.Wiimote()<br />   wiimote.rpt_mode = cwiid.RPT_ACC<br />   #wiimote.state dict now has an acc key with a three-element tuple<br />   print 'pitch: %d' % (wiimote.state['acc'][cwiid.Y])<br /></span><br /><br /><br />5 lines of code and you're there. I love python.<br /><br /><br />Another video demo (with WiiMote pseudo-control):<br /><br /><object height="385" width="480"><param name="movie" value="http://www.youtube.com/v/wYVPR1jEZJk&amp;hl=en_US&amp;fs=1&amp;color1=0x006699&amp;color2=0x54abd6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/wYVPR1jEZJk&amp;hl=en_US&amp;fs=1&amp;color1=0x006699&amp;color2=0x54abd6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/8243365953452498700-3308661321036559368?l=mgalgs.blogspot.com' alt='' /></div>
 
 
             </div>

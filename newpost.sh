@@ -1,7 +1,7 @@
 #!/bin/sh
 
 MYEDITOR="emacsclient -n -a emacs"
-MYMARKUP=markdown
+MYMARKUP=textile
 
 if [[ $# -ne 1 ]]; then
     echo "usage: $0 title"
@@ -10,6 +10,7 @@ fi
 
 newfile=_posts/$(date +%Y-%m-%d)-${1}.$MYMARKUP
 
+# start with some bare bones front matter:
 cat > $newfile <<EOF
 ---
 layout: post

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Elisp Pretty Numbers
+tags: [elisp, emacs]
 ---
 
 Here are some elisp functions I cooked up today to make looking at
@@ -42,8 +43,8 @@ Usage:
   ==> "929,344,324,432,444.0"
 {% endhighlight %}
 
-With that function in hand, I wrote a little convenience function for
-looking at numbers:
+With that function in hand, I wrote a little convenience function to
+help maintain sanity while looking at ginourmous numbers:
 
 {% highlight scheme %}
 (defun my-prettify-number (n)

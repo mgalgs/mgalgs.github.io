@@ -93,8 +93,9 @@
           <!--   <li><a href="#about">About</a></li> -->
           <!--   <li><a href="#contact">Projects</a></li> -->
           <!-- </ul> -->
-          <!-- <div class="pull-right" style="line-height:40px;margin:0;"> -->
-          <!-- </div> -->
+          <div class="pull-right" style="line-height:40px;margin:0;">
+            <a class="brand" style="font-size:14px;" href="/">Mitchel Humpherys</a>
+          </div>
         </div> <!-- container -->
       </div>   <!-- fill -->
     </div>     <!-- topbar -->
@@ -113,12 +114,25 @@
           </div>              <!-- span9 -->
           <div class="span1"><!-- Nothing to see here. Move along. -->&nbsp;</div>
           <div class="span4">
+
             <h5>Links</h5>
             <ul class="unstyled">
               <li><a href="https://plus.google.com/u/0/103598357691189342062/about">G+ Profile</a></li>
               <li><a href="https://github.com/mgalgs">GitHub Profile</a></li>
               <li><a href="http://careers.stackoverflow.com/cv/publish/61463">Stack Overflow Careers Profile</a></li>
             </ul>
+
+            <h5>Projects</h5>
+            <ul class="unstyled">
+              {% for post in site.posts %}
+              {% if post.category == 'projects' %}
+              <li>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+
           </div>
         </div> <!-- /row -->
         <div class="row">
