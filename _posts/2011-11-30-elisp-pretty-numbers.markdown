@@ -5,7 +5,7 @@ tags: [elisp, emacs]
 ---
 
 Here are some elisp functions I cooked up today to make looking at
-numbers a little more convenient.
+numbers from within emacs a little more convenient.
 
 First, a function to add a thousands separator to a (possibly floating
 point) number:
