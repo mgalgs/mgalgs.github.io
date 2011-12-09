@@ -566,9 +566,9 @@ pre {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  /* white-space: pre; */
+  /* white-space: pre-wrap; */
+  /* word-wrap: break-word; */
 }
 /* Forms.less
  * Base styles for various input types, form layouts, and states

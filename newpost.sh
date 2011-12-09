@@ -1,7 +1,7 @@
 #!/bin/sh
 
 MYEDITOR="emacsclient -n -a emacs"
-MYMARKUP=textile
+MYMARKUP=markdown
 
 if [[ $# -ne 1 ]]; then
     echo "usage: $0 title"

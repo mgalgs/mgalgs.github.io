@@ -17,3 +17,8 @@ span.tags-list {
     font-family: 'Droid Sans Mono', sans-serif;
     font-size: 11px;
 }
+pre {
+    width: 100%;
+    overflow: auto;
+}
+
