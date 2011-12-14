@@ -3,37 +3,49 @@ layout: default
 title: Home
 ---
 
-<h3>Posts</h3>
+<h2>Posts</h2>
 <ul class="unstyled posts">
   {% for post in site.posts %}
   {% unless post.category %}
   <li>
-    <span class="label">{{ post.date | date_to_string }}</span>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-    {% unless post.tags == empty %}
-    <span class="tags-list">
-      <span> :: </span>
-      {{ post.tags | join: ", " }}
-    </span>
-    {% endunless %}
+    <div class="row">
+      <div class="span2">
+        <div class="label pull-right" style="width:80px;text-align:center;">{{ post.date | date_to_string }}</div>
+      </div>
+      <div class="span8">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        {% unless post.tags == empty %}
+        <span class="tags-list">
+          <span> :: </span>
+          {{ post.tags | join: ", " }}
+        </span>
+        {% endunless %}
+      </div> <!-- span7 -->
+    </div>   <!-- row -->
   </li>
   {% endunless %}
   {% endfor %}
 </ul>
 
-<h3>Projects</h3>
+<h2>Projects</h2>
 <ul class="unstyled posts">
   {% for post in site.posts %}
   {% if post.category == 'projects' %}
   <li>
-    <span class="label">{{ post.date | date_to_string }}</span>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-    {% unless post.tags == empty %}
-    <span class="tags-list">
-      <span> :: </span>
-      {{ post.tags | join: ", " }}
-    </span>
-    {% endunless %}
+    <div class="row">
+      <div class="span2">
+        <div class="label pull-right" style="width:80px;text-align:center;">{{ post.date | date_to_string }}</div>
+      </div>
+      <div class="span8">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        {% unless post.tags == empty %}
+        <span class="tags-list">
+          <span> :: </span>
+          {{ post.tags | join: ", " }}
+        </span>
+        {% endunless %}
+      </div> <!-- span8 -->
+    </div>   <!-- row -->
   </li>
   {% endif %}
   {% endfor %}
