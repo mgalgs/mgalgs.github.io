@@ -1,6 +1,9 @@
 .brand {
     font-family: 'Droid Sans Mono', sans-serif;
 }
+.nice-mono {
+    font-family: 'Droid Sans Mono', sans-serif;
+}
 .cursor {
     color: black;
 }
@@ -21,4 +24,14 @@ pre {
     width: 100%;
     overflow: auto;
 }
-
+ul.gray-list li a {
+    display: block;
+    background: #E5E5E5;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+ul.gray-list li:hover a {
+    background: #EEE;
+    text-decoration: none;
+}

@@ -1241,7 +1241,7 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   color: #bfbfbf;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.topbar h3 a:hover, .topbar .brand a:hover, .topbar ul .active > a {
+.topbar h3 a:hover, .topbar .brand a:hover, .topbar ul .active > a, .topbar .subbrand {
   background-color: #333;
   background-color: rgba(255, 255, 255, 0.05);
   color: #ffffff;

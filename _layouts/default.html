@@ -27,9 +27,6 @@
       .container > footer p {
         text-align: center; /* center align it with the container */
       }
-      .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-      }
 
       /* The white background content wrapper */
       .content {
@@ -51,11 +48,6 @@
         margin: -20px -20px 20px;
       }
 
-      /* Styles you shouldn't keep as they are for displaying this base example only */
-      .content .span10,
-      .content .span4 {
-        min-height: 500px;
-      }
       /* Give a quick and non-cross-browser friendly divider */
       .content .span4 {
         margin-left: 0;
@@ -91,16 +83,24 @@
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="/">mgalgs # </a>
-          <!-- <ul class="nav"> -->
-          <!--   <li class="active"><a href="/">Home</a></li> -->
-          <!--   <li><a href="#about">About</a></li> -->
-          <!--   <li><a href="#contact">Projects</a></li> -->
-          <!-- </ul> -->
-          <div class="pull-right" style="line-height:40px;margin:0;">
-            <a class="brand" style="font-size:14px;" href="/">Mitchel Humpherys</a>
-            <a class="brand" style="font-size:14px;" href="/">aka Mitch Humpherys</a>
-          </div>
+          <div class="row">
+            <div class="span4">
+              <a class="brand" href="/">mgalgs # </a>
+            </div>
+            <!-- <ul class="nav"> -->
+            <!--   <li class="active"><a href="/">Home</a></li> -->
+            <!--   <li><a href="#about">About</a></li> -->
+            <!--   <li><a href="#contact">Projects</a></li> -->
+            <!-- </ul> -->
+            <div class="span7 offset5" style="text-align:right;height:40px;">
+              <a class="subbrand nice-mono" style="font-size:14px;padding-bottom:0px;" href="/">Mitchel Humpherys</a>
+              <br/>
+              <a class="subbrand nice-mono" style="font-size:9px;" href="http://careers.stackoverflow.com/mitch">aka Mitch Humpherys</a>
+              <a class="subbrand nice-mono" style="font-size:9px;" href="https://plus.google.com/103598357691189342062/about">aka +Mitchel Humpherys</a>
+              <a class="subbrand nice-mono" style="font-size:9px;" href="http://stackoverflow.com/users/209050/mgalgs">aka mgalgs</a>
+              <a class="subbrand nice-mono" style="font-size:9px;" href="https://twitter.com/mitch_feaster">aka @mitch_feaster</a>
+            </div>
+          </div> <!-- row -->
         </div> <!-- container -->
       </div>   <!-- fill -->
     </div>     <!-- topbar -->
@@ -112,23 +112,24 @@
         {{ page.before_main }}
 
         <div class="row">
-          <div class="span9">
+          <div class="span10">
             <div id="main-content">
               {{ content }}
             </div>
           </div>              <!-- span9 -->
-          <div class="span1"><!-- Nothing to see here. Move along. -->&nbsp;</div>
-          <div class="span4">
+          <!-- <div class="span1"><\!-- Nothing to see here. Move along. -\->&nbsp;</div> -->
+          <div class="span5 offset1">
 
             <h5>Links</h5>
-            <ul class="unstyled">
+            <ul class="unstyled gray-list">
               <li><a href="https://plus.google.com/u/0/103598357691189342062/about">G+ Profile</a></li>
               <li><a href="https://github.com/mgalgs">GitHub Profile</a></li>
               <li><a href="http://careers.stackoverflow.com/cv/publish/61463">Stack Overflow Careers Profile</a></li>
+              <li><a href="http://stackoverflow.com/users/209050/mgalgs">Stack Overflow Profile</a></li>
             </ul>
 
             <h5>Projects</h5>
-            <ul class="unstyled">
+            <ul class="unstyled gray-list">
               {% for post in site.posts %}
               {% if post.category == 'projects' %}
               <li>
@@ -136,6 +137,30 @@
               </li>
               {% endif %}
               {% endfor %}
+            </ul>
+
+            <h5>My Patches to Open Source Projects</h5>
+            <ul class="unstyled gray-list">
+              <li>
+                <a href="https://github.com/capitaomorte/yasnippet/pull/201">
+                  Emacs yasnippet mode :: using <code>let*</code>
+                  instead of <code>let</code> for expand-env
+                  <span class="label success">Accepted</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://savannah.gnu.org/patch/index.php?7634">
+                  Bash :: Print last saved keyboard macro
+                  <span class="label warning">Pending</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/defunkt/textmate.el/pull/20">
+                  Emacs textmate mode :: multiple exclude pattern and
+                  default symbol completion enhancements
+                  <span class="label warning">Pending</span>
+                </a>
+              </li>
             </ul>
 
           </div>
