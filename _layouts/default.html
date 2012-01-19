@@ -1,3 +1,26 @@
+---
+patches:
+    - project: Emacs yasnippet mode
+      desc: using <code>let*</code> instead of <code>let</code> for expand-env
+      accepted: yes
+      url: https://github.com/capitaomorte/yasnippet/pull/201
+      tags: elisp
+    - project: Gnome shell extension area screenshot
+      desc: Intelligent renaming of screenshots
+      accepted: no
+      url: https://github.com/DASPRiD/gnome-shell-extension-area-screenshot/pull/11
+      tags: bash
+    - project: Bash
+      desc: Print last saved keyboard macro
+      accepted: no
+      url: https://savannah.gnu.org/patch/index.php?7634
+      tags: C
+    - project: Emacs textmate mode
+      desc: Multiple exclude pattern and default symbol completion enhancements
+      accepted: no
+      url: https://github.com/defunkt/textmate.el/pull/20
+      tags: elisp
+---
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -143,27 +166,24 @@
 
             <h5>My Patches to Open Source Projects</h5>
             <ul class="unstyled gray-list">
+              {% for patch in page.patches %}
               <li>
-                <a href="https://github.com/capitaomorte/yasnippet/pull/201">
-                  Emacs yasnippet mode :: using <code>let*</code>
-                  instead of <code>let</code> for expand-env
+                <a href="{{ patch.url }}">
+                  {% if patch.accepted %}
                   <span class="label success">Accepted</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://savannah.gnu.org/patch/index.php?7634">
-                  Bash :: Print last saved keyboard macro
+                  {% else %}
                   <span class="label warning">Pending</span>
+                  {% endif %}
+                  {% unless patch.tags == empty %}
+                  <span class="tags-list">
+                    [{{ patch.tags | join: ", " }}]
+                  </span>
+                  {% endunless %}
+                  {{ patch.project }} :: {{ patch.desc }}
                 </a>
               </li>
-              <li>
-                <a href="https://github.com/defunkt/textmate.el/pull/20">
-                  Emacs textmate mode :: multiple exclude pattern and
-                  default symbol completion enhancements
-                  <span class="label warning">Pending</span>
-                </a>
-              </li>
-            </ul>
+              {% endfor %}
+            </ul> <!-- eo my patches -->
 
           </div>
         </div> <!-- /row -->
