@@ -90,6 +90,9 @@ boring ones):
 <p>Ta-Da!</p>
 <a href="http://i.imgur.com/psxqW.png"><img width="500" src="http://i.imgur.com/psxqW.png" /></a>
 
+We'll shut the system down now so that we can boot from the hard disk
+for further configuration.
+
 <br/>
 <br/>
 
