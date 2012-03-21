@@ -43,10 +43,6 @@ using `qemu-img`:
 
     # qemu-img create disk.img 20G
 
-**Note, this actually creates a 20GB file up front, so make sure you
-  have enough space on your hard drive. There's no "dynamic sizing"
-  like in VirtualBox.**
-
 ##### Short Digression: Bridge Interfaces
 
 Ethernet software
@@ -78,6 +74,27 @@ not enough to run Xen):
 
     # qemu-system-x86_64 -cdrom XCP-1.5-beta-base-53341.iso -hda disk.img -m 1024
 
-We click through some menus like this one:
+We click through some menus like these (omitting some of the more
+boring ones):
 
-**INSERT IMAGE HERE**
+<a href="http://i.imgur.com/Dj3sd.png"><img width="500" src="http://i.imgur.com/Dj3sd.png" /></a>
+<a href="http://i.imgur.com/kFc9r.png"><img width="500" src="http://i.imgur.com/kFc9r.png" /></a>
+<a href="http://i.imgur.com/wa3xj.png"><img width="500" src="http://i.imgur.com/wa3xj.png" /></a>
+<a href="http://i.imgur.com/9W5rP.png"><img width="500" src="http://i.imgur.com/9W5rP.png" /></a>
+<a href="http://i.imgur.com/uFJ8t.png"><img width="500" src="http://i.imgur.com/uFJ8t.png" /></a>
+<a href="http://i.imgur.com/DKDws.png"><img width="500" src="http://i.imgur.com/DKDws.png" /></a>
+<p>Nice panda!</p>
+<a href="http://i.imgur.com/MirTm.png"><img width="500" src="http://i.imgur.com/MirTm.png" /></a>
+<a href="http://i.imgur.com/W464D.png"><img width="500" src="http://i.imgur.com/W464D.png" /></a>
+<a href="http://i.imgur.com/XXRvQ.png"><img width="500" src="http://i.imgur.com/XXRvQ.png" /></a>
+<a href="http://i.imgur.com/psxqW.png"><img width="500" src="http://i.imgur.com/psxqW.png" /></a>
+
+<br/>
+<br/>
+
+### Xen Configuration
+
+We can boot the Xen system that we just installed by getting rid of
+the `-cdrom` argument:
+
+    # qemu-system-x86_64 -hda disk.img -m 1024
