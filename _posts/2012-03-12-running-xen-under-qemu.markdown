@@ -87,6 +87,7 @@ boring ones):
 <a href="http://i.imgur.com/MirTm.png"><img width="500" src="http://i.imgur.com/MirTm.png" /></a>
 <a href="http://i.imgur.com/W464D.png"><img width="500" src="http://i.imgur.com/W464D.png" /></a>
 <a href="http://i.imgur.com/XXRvQ.png"><img width="500" src="http://i.imgur.com/XXRvQ.png" /></a>
+<p>Ta-Da!</p>
 <a href="http://i.imgur.com/psxqW.png"><img width="500" src="http://i.imgur.com/psxqW.png" /></a>
 
 <br/>
