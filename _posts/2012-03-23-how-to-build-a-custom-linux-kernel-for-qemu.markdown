@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to Build A Custom Linux Kernel For Qemu
+tags: [linux, qemu, kernel, workinprogress]
 ---
 
 In this howto, we're going to build a Linux system from the ground up

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: dd Across The Internet With ssh and xz
+tags: [linux, dd, xz, ssh, command-line]
 ---
 
 Here's how you can back up an entire hard disk across the internet
