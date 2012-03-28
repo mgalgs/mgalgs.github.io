@@ -109,7 +109,7 @@ After the install is complete, I shut down the machine, and make a
 
 And bring the machine back up without the cdrom:
 
-    $ qemu-system-x86_64 -hda disk.img -m 1024
+    $ qemu-system-x86_64 -hda overlay1.img -m 1024
 
 At this point I do the usual updates and then install the `xen`
 package group to enable support for the hypervisor:
@@ -121,7 +121,7 @@ I lay down an overlay at this point since it's a good checkpoint that
 I can come back to if I mess things up. To do this simply hit
 `ctl-alt-shift-2` to access the `qemu` console, then type:
 
-     (qemu) savevm added-squeeze
+     (qemu) savevm installed-xen
 
 # Install some Guests
 
@@ -139,7 +139,7 @@ understand more of the nitty gritty behind how hypervisors work.
 
 Paravirtualization is a little more difficult to use since it involves
 modifying the guest operating system. However, more and more OSes are
-adding support by default for paravirtualization. For example, recent
+adding support built-in for paravirtualization. For example, recent
 versions of the Linux kernel have paravirtualization support (and it
 is enabled as a module by default in some distros).
 
