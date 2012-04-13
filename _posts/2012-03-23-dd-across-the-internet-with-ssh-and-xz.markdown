@@ -5,7 +5,8 @@ tags: [linux, dd, xz, ssh, command-line]
 ---
 
 Here's how you can back up an entire hard disk across the internet
-(compressed with `pv` to save as much bandwidth as possible):
+(compressed with `xz` to save as much bandwidth as possible, also
+using `pv` for progress):
 
     $ ssh -p 2222 root@sonzona.dyndns.org 'dd if=/dev/xvda1 | xz -c' | pv > sonzonaroot.img.xz
 
