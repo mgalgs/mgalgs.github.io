@@ -54,13 +54,13 @@ Sadly, despite being a long-time computer enthusiast and a Computer
 Engineer by trade this is was first PC build, so I was a little
 nervous that I was going to mess something up and end up with a $400
 scrap heap. Fortunately, everything went fairly smoothly. The only
-hiccup I encountered is that the original power supply I chose
+hiccup I encountered was when the original power supply I chose
 ([a fanless 350W from Sparkle](http://pcpartpicker.com/part/sparkle-power-supply-fsp35060gnv))
 died within 5 minutes of turning it on. I returned it and got the
 Antec listed above with no regrets.
 
-Honestly, the build went really smoothly. It was a simple matter of
-following some manuals and plugging the right wires into the right
+Overall, the build went smoothly. It was a simple matter of following
+the various manuals and plugging the right wires into the right
 places. No black magic here.
 
 <div style="text-align: center;">
@@ -106,7 +106,8 @@ places. No black magic here.
 
 Installing FreeNAS was as simple as
 [`dd`'ing the image to a thumb drive](http://www.freenas.org/images/resources/freenas8.0.3/freenas8.0.3_guide.html#__RefHeading__426_145473606),
-and then clicking through the FreeNAS web interface.
+configuring my BIOS to boot it, and then clicking through the FreeNAS
+web interface.
 
 I'm currently working on building my own custom FreeBSD-based NAS
 system using
@@ -114,4 +115,7 @@ system using
 since I would like to be able to customize the installation a bit
 more.  Specifically, I want to run http and git servers on my NAS and
 haven't found an easy way to do that through FreeNAS. I'll be sure to
-write about it here when I get it working.
+write about it here when I get it working. I've heard of some people
+using `jail`s that reside in their storage pool, but I don't think I
+want to go that route. If you're running FreeNAS with custom software
+please drop me a comment!
