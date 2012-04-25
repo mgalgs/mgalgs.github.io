@@ -41,8 +41,11 @@ Type|Item|Price
  | Generated 2012-02-19 02:15 EST-0500 |
 
 I really need to give props to the good folks over at
-[pcpartpicker](http://pcpartpicker.com/). I wouldn't have been able to
-build this system for this cheap without their amazing site.
+[r/buildapc](http://www.reddit.com/r/buildapc). I got some great tips
+for hardware I should buy as well as troubleshooting. Another resource
+that was *insanely* useful was the
+[pcpartpicker](http://pcpartpicker.com/) website. I wouldn't have been
+able to build this system for this cheap without that amazing site.
 
 # The Build
 
