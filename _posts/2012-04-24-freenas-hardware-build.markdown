@@ -114,9 +114,46 @@ I'm currently working on building my own custom FreeBSD-based NAS
 system using
 [nanoBSD](http://www.freebsd.org/doc/en_US.ISO8859-1/articles/nanobsd/index.html)
 since I would like to be able to customize the installation a bit
-more.  Specifically, I want to run http and git servers on my NAS and
-haven't found an easy way to do that through FreeNAS. I'll be sure to
-write about it here when I get it working. I've heard of some people
-using `jail`s that reside in their storage pool, but I don't think I
-want to go that route. If you're running FreeNAS with custom software
-please drop me a comment!
+more. Specifically, I want to run handbrake and an http server on my
+NAS and haven't found an easy way to do that through FreeNAS. I'll be
+sure to write about it here when I get it working. I've heard of some
+people using `jail`s that reside in their storage pool, but I don't
+think I want to go that route. If you're running FreeNAS with custom
+software please drop me a comment!
+
+<a name="benchmarks">&nbsp;</a>
+
+# Benchmarks
+
+### Data Transfer
+
+My benchmarking method was to transfer a 1GB file to the NAS via NFS.
+
+I was able to max out the 100 Mb/s NIC on my desktop machine:
+
+    $ dd if=/dev/zero of=1GB.dat bs=1GB count=1
+    $ time cp 1GB.dat /media/space/
+
+    real    1m27.435s
+    user    0m0.018s
+    sys     0m3.391s
+
+That's 1 Gigabyte in ~87 seconds, so we're looking at about 11.5
+M**B**/s, or 91 M**b**/s. I performed the same test several times and
+my timings never varied by more than a few hundred milliseconds. After
+factoring in the overhead of the network stack of my OS I think it's
+safe to assume that the NIC was saturated. In other words, I don't
+really know how fast this thing is capable of moving... But it's at
+least 100 Mb/s :).
+
+The system also handled the load with no problems at all. Here's the
+output of `uptime` at the very end of the transfer:
+
+    8:48PM  up 11 days,  8:54, 1 user, load averages: 0.52, 0.17, 0.06
+
+Since this is a dual-core machine a .5 load average means that 1 cpu
+was half-loaded.
+
+### Power Consumption
+
+TODO. Time to check out a Kill-a-Watt from the local library again :)...
