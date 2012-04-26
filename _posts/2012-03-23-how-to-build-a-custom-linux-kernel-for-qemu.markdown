@@ -66,6 +66,7 @@ The options I changed were:
 * `CONFIG_EXTRA_CFLAGS=-m32 -march=i386` (because I'm compiling on a 64-bit host)
 * `CONFIG_MKFS_EXT2=n`
 
+
     $ make
     $ LDFLAGS="--verbose -m32" make
     $ cp -av busybox ~/linux_qemu/initramfs/bin/
