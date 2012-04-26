@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Freenas Hardware Build
+tags: [freenas, hardware]
 ---
 
 ### 1TB of Redundant Storage for < $450 == woot!
