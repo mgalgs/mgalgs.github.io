@@ -1,8 +1,16 @@
 ---
 layout: post
 title: Running Xen Under Qemu
-tags: [linux, qemu, xen, workinprogress]
+tags: [linux, qemu, xen]
 ---
+
+<div class="alert-message info">
+
+<b>Note</b>: I never got any guest OS's working, so this post is kind
+of falls off a cliff at the end... However, I think the setup process
+is still interesting, so I'm leaving it here.
+
+ </div>
 
 I've been trying to learn more about hypervisors lately since, well,
 they're awesome. Also, I've always wanted to learn `qemu`, so I
@@ -143,4 +151,4 @@ adding support built-in for paravirtualization. For example, recent
 versions of the Linux kernel have paravirtualization support (and it
 is enabled as a module by default in some distros).
 
-## Debian
+**I never got any guests to work :(**

@@ -4,6 +4,13 @@ title: How to Build A Custom Linux Kernel For Qemu
 tags: [linux, qemu, kernel, workinprogress]
 ---
 
+<div class="alert-message info">
+
+<b>Note</b>: This post is still a work-in-progress. My kernel
+currently panics while trying to execute <code>/init</code> :(.
+
+ </div>
+
 In this howto, we're going to build a Linux system from the ground up
 using kernel sources from kernel.org and a busybox-based `initramfs`,
 which we will then run under `qemu`.
@@ -66,7 +73,15 @@ the last stage of the boot process.
 
 Here's the contents of my `/init`:
 
-    stuff
+    #!/bin/busybox sh
+    
+    echo "hello, world"
+    # todo finish setting up busybox and launch a shell
+
+You might notice that that looks pretty lame :). As mentioned at the
+top of this post, my kernel panics at `/init`. I've tried compiling a
+minimal C program but that's not working either... As soon as I can
+run `echo` or `printf` I'll finish my `/init` script :).
 
 We should now have everything necessary for our `initramfs`. We will
 `cpio` it up:

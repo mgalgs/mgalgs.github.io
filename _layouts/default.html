@@ -206,6 +206,15 @@ patches:
               {% endfor %}
             </ul> <!-- eo my patches -->
 
+            <h5>Recent Posts</h5>
+            <ul class="unstyled gray-list">
+              {% for post in site.posts limit:5 %}
+              <li>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+
           </div>
         </div> <!-- /row -->
         <div class="row">
