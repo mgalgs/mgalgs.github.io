@@ -13,6 +13,12 @@ the bootloader on the USB stick. Here's how you do it in grub 0.97:
     grub> makeactive
     grub> chainloader +1
 
+and in grub 1.99:
+
+    grub> set root=(hd1)
+    grub> chainloader +1
+    grub> boot
+
 **TIP**: make liberal use of your TAB key when trying to figure out
   where the boot disk/partition are located during the `root` command.
 
