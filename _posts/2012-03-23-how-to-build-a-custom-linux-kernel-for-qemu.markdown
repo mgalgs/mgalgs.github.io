@@ -8,6 +8,8 @@ tags: [linux, qemu, kernel, workinprogress]
 
 <b>Note</b>: This post is still a work-in-progress. My kernel
 currently panics while trying to execute <code>/init</code> :(.
+All of the steps should be basically correct, I think I'm
+just missing a kernel config option or something...
 
  </div>
 
