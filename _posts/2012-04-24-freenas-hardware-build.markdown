@@ -52,7 +52,7 @@ able to build this system for this cheap without that amazing site.
 # The Build
 
 Sadly, despite being a long-time computer enthusiast and a Computer
-Engineer by trade this is was first PC build, so I was a little
+Engineer by trade this was my first PC build, so I was a little
 nervous that I was going to mess something up and end up with a $400
 scrap heap. Fortunately, everything went fairly smoothly. The only
 hiccup I encountered was when the original power supply I chose
