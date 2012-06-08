@@ -77,7 +77,11 @@ for about 6 months now, and haven't had a single breakage. I really
 think it might be the ideal platform for developers... And it doesn't
 hurt its street cred that it's
 [Linus Torvalds' distro of choice](http://news.oreilly.com/2008/07/linux-torvalds-on-linux-distri.html)
-(the article is old, so this may not even be true any more) :).
+(the article is old, so this may not even be true any more) :)
+(**EDIT:** Linus just (June 2012)
+[posted to Google+](https://plus.google.com/u/0/102150693225130002912/posts/UkoAaLDpF4i)
+about updating from F14 to F17, so it looks like he *is* still using
+Fedora!).
 
 **In short**, I know any distribution can work just fine for
 development, but my experience is that Fedora has the best balance
