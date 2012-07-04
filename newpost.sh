@@ -15,6 +15,7 @@ cat > $newfile <<EOF
 ---
 layout: post
 title:$(for i in $(echo $1 | tr '-' ' '); do echo -n " ${i:0:1}" | tr '[:lower:]' '[:upper:]'; echo -n ${i:1}; done)
+tags: [stuff, otherstuff]
 ---
 EOF
 

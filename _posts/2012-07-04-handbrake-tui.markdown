@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Handbrake TUI
+tags: [handbrake, bash]
 ---
 
 Recently I've been busy digitizing my video and music collection to
@@ -13,7 +14,8 @@ a simple handbrake text-based user interface
 bash that I thought others might find useful.
 
 You can download it
-[here](https://raw.github.com/mgalgs/scripts/master/ripdvd.sh).
+[here](https://raw.github.com/mgalgs/scripts/master/ripdvd.sh). It
+should work on any machine that runs `bash` and `HandBrakeCLI`.
 
 
 Here's a \`screenshot' of it in action:
