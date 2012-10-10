@@ -74,7 +74,7 @@ Now configure busybox:
 The options I changed were:
 
 * `CONFIG_DESKTOP=n`
-* `CONFIG_EXTRA_CFLAGS=-m32 -march=i386` (because I'm compiling on a 64-bit host)
+* `CONFIG_EXTRA_CFLAGS=-m32 -march=i386` (might not need this if compiling on a 32-bit host)
 * `CONFIG_MKFS_EXT2=n`
 
 Compile:
@@ -190,7 +190,7 @@ I added:
 * `CONFIG_BINFMT_ELF=y`
 * `CONFIG_SERIAL_8250`
 * `CONFIG_EXT2_FS=y`
-* `CONFIG_IA32_EMULATION=y`
+* `CONFIG_IA32_EMULATION=y` # might not need if on 32-bit host
 * `CONFIG_NET=y`
 * `CONFIG_PACKET=y`
 * `CONFIG_UNIX=y`
@@ -225,7 +225,7 @@ Now we'll just create a little hard disk to play around with:
 
 We can now run our kernel in `qemu`:
 
-    $ qemu-system-x86_64 -hda disk.img -kernel ../linux-3.3/arch/x86/boot/bzImage -initrd my-initramfs.cpio
+    $ qemu-system-i386 -hda disk.img -kernel ../linux-3.3/arch/x86/boot/bzImage -initrd my-initramfs.cpio
 
 Success!
 
