@@ -6,10 +6,9 @@ tags: [linux, qemu, kernel, workinprogress]
 
 <div class="alert-message info">
 
-<b>Note</b>: This post is still a work-in-progress. My kernel
-currently panics while trying to execute <code>/init</code> :(.
-All of the steps should be basically correct, I think I'm
-just missing a kernel config option or something...
+<b>Update:</b> it's working! No more kernel panic! Big thanks to
+Kckanth21 in the comments who helped point me in the right direction
+to get this thing working!
 
  </div>
 
@@ -60,6 +59,16 @@ Now we'll compile busybox:
     $ wget http://busybox.net/downloads/busybox-1.19.4.tar.bz2
     $ tar xf busybox-1.19.4.tar.bz2
     $ cd busybox-1.19.4/
+
+For some reason I had to fix up some includes to get things working
+here. Newer versions of busybox might not have this issue, I haven't
+really pursued the issue... If you have issues compiling you might
+want to apply my patch:
+
+    $ patch -p1 < <(wget https://raw.github.com/gist/3863017/f6d96af7b7cab9346adaf21aa7f05e0cfb722bef/struct_rlimit.diff -q -O-)
+
+Now configure busybox:
+
     $ make menuconfig
 
 The options I changed were:
@@ -68,32 +77,52 @@ The options I changed were:
 * `CONFIG_EXTRA_CFLAGS=-m32 -march=i386` (because I'm compiling on a 64-bit host)
 * `CONFIG_MKFS_EXT2=n`
 
+Compile:
 
     $ make
-    $ LDFLAGS="--verbose -m32" make
-    $ cp -av busybox ~/linux_qemu/initramfs/bin/
+    $ make install
 
-Double check that the shared libraries look sane:
+Copy the freshly-built busybox system to our initramfs staging area:
 
-    $ ldd busybox
+    $ sudo cp -avR _install/* ../initramfs/
+
+Now let's have a look at what shared libraries we'll need to include
+in our system:
+
+    $ cd ~/linux_qemu/initramfs
+    $ ldd bin/busybox
             linux-gate.so.1 =>  (0xf76f7000)
-            libm.so.6 => /usr/lib32/libm.so.6 (0xf76a1000)
-            libc.so.6 => /usr/lib32/libc.so.6 (0xf74fe000)
+            libm.so.6 => /usr/lib/libm.so.6 (0xf76a1000)
+            libc.so.6 => /usr/lib/libc.so.6 (0xf74fe000)
             /lib/ld-linux.so.2 (0xf76f8000)
-    
 
-    $ cp -av busybox ~/linux_qemu/initramfs/bin/
-    $ cp -av /usr/lib32/lib[mc].so.6 ~/linux_qemu/initramfs/lib/
-    OR
-    $ cp -av /usr/lib32/lib[cm]-2.15.so lib/
+At this point I did something very hacky and copied over some
+libraries from the host machine. This is almost definitely *not* the
+right way to do it, but it's working for now so oh well...
 
+    $ mkdir -pv usr/lib
+    $ cp -av /usr/lib/lib[mc].so.6 usr/lib/
+    $ cp -av /usr/lib/lib[mc]-2.16.so usr/lib/
+    $ cp -av /usr/lib/ld-2.16.so usr/lib/
+    $ cp -av /lib/ld-linux.so.2 lib/
+    $ cp -av /lib/ld-2.16.so lib/
 
+I believe the correct way to do it would be cross-compile `glibc` in a
+bootstrapped environment similar to
+[how it's done in the `Linux From Scratch`](http://www.linuxfromscratch.org/lfs/view/development/chapter06/glibc.html)
+book. It's really kind of tricky to get around the host-library
+dependency stuff...
 
-Since we really want a minimal system, we could have also built a
-[`uclibc` toolchain](http://www.uclibc.org/toolchains.html). uclibc
-provides an excellent framework for building entire systems (including
-busybox and the Linux kernel). Maybe I'll cover building a `uclibc`
-toolchain in another howto.
+It's also worth mentioning another tool at this point:
+[`uclibc`](http://www.uclibc.org/toolchains.html). `uclibc` is a small
+C Library targeting embedded systems. It also comes with a very slick
+build system called [`buildroot`](http://buildroot.uclibc.org/) that
+makes it dead simple to build a full embedded system complete with a
+cross-compiled toolchain, root filesystem, kernel image and
+bootloader. It basically automates everything we're doing in this
+tutorial (and uses a different C Libary). Anyways, it's a very cool
+tool, so maybe I'll cover building a qemu system with `uclibc` in
+another howto.
 
 ### Init
 
@@ -105,16 +134,28 @@ the last stage of the boot process.
 Here's the contents of my `/init`:
 
 {% highlight bash %}
-#!/bin/bash
+#!/bin/sh
 
-echo "stuff"
-# todo finish setting up busybox and launch a shell
+/bin/mount -t proc none /proc
+/bin/mount -t sysfs sysfs /sys
+
+cat <<'EOF'
+                       _             _ _                  
+ _ __ ___   __ _  __ _| | __ _ ___  | (_)_ __  _   ___  __
+| '_ ` _ \ / _` |/ _` | |/ _` / __| | | | '_ \| | | \ \/ /
+| | | | | | (_| | (_| | | (_| \__ \ | | | | | | |_| |>  < 
+|_| |_| |_|\__, |\__,_|_|\__, |___/ |_|_|_| |_|\__,_/_/\_\
+           |___/         |___/                            
+
+EOF
+echo 'Enjoy your new system!'
+
+/bin/sh
 {% endhighlight %}
 
-You might notice that that looks pretty lame :). As mentioned at the
-top of this post, my kernel panics at `/init`. I've tried compiling a
-minimal C program but that's not working either... As soon as I can
-run `echo` or `printf` I'll finish my `/init` script :).
+Make `/init` executable:
+
+    $ chmod 755 ~/linux_qemu/initramfs/init
 
 We should now have everything necessary for our `initramfs`. We will
 `cpio` it up:
@@ -170,12 +211,13 @@ Now we're ready to build the kernel:
     $ make
 
 Our kernel image should now be available at
-`.../linux-3.3/arch/x86/boot/`.
+`linux-3.3/arch/x86/boot/`.
 
 ## Final Preparations
 
 Now we'll just create a little hard disk to play around with:
 
+    $ cd ~/linux_qemu
     $ qemu-img create disk.img 512M
     $ mkfs.ext2 -F disk.img
 
@@ -185,3 +227,8 @@ We can now run our kernel in `qemu`:
 
     $ qemu-system-x86_64 -hda disk.img -kernel ../linux-3.3/arch/x86/boot/bzImage -initrd my-initramfs.cpio
 
+Success!
+
+<a href="http://i.imgur.com/iGVfW.png">
+<img style="width:600px;" title="Booted into mgalgs linux" src="http://i.imgur.com/iGVfW.png" >
+</a>
