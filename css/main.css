@@ -24,6 +24,9 @@ pre {
     width: 100%;
     overflow: auto;
 }
+code {
+    padding: 0;
+}
 ul.gray-list li a {
     display: block;
     background: #E5E5E5;
