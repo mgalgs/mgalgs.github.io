@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to Build A Custom Linux Kernel For Qemu
-tags: [linux, qemu, kernel, workinprogress]
+tags: [linux, qemu, kernel]
 ---
 
 <div class="alert-message info">
