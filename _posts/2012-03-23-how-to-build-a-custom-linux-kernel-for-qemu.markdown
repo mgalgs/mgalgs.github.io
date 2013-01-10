@@ -10,6 +10,11 @@ tags: [linux, qemu, kernel]
 Kckanth21 in the comments who helped point me in the right direction
 to get this thing working!
 
+<b>Update 2:</b> I haven't played with it yet, but
+[Aboriginal Linux](http://www.landley.net/aboriginal/about.html) looks
+like a good way to play around with Linux on qemu... I would still
+recommend doing it manually at least once though :)
+
  </div>
 
 In this howto, we're going to build a Linux system from the ground up
