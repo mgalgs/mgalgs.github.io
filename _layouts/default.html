@@ -182,7 +182,14 @@ patches:
               {% for post in site.posts %}
               {% if post.category == 'projects' %}
               <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
+                <a href="{{ post.url }}">
+		  {{ post.title }}
+                  {% unless post.tags == empty %}
+                  <span class="tags-list">
+                    [{{ post.tags | join: ", " }}]
+                  </span>
+                  {% endunless %}
+		</a>
               </li>
               {% endif %}
               {% endfor %}
