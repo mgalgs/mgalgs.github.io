@@ -1,31 +1,3 @@
----
-patches:
-    - project: Emacs yasnippet mode
-      desc: using <code>let*</code> instead of <code>let</code> for expand-env
-      accepted: yes
-      url: https://github.com/capitaomorte/yasnippet/pull/201
-      tags: elisp
-    - project: Emacs ace-jump-mode
-      desc: added hook before the jump
-      accepted: yes
-      url: https://github.com/winterTTr/ace-jump-mode/pull/2
-      tags: elisp
-    - project: Gnome shell extension area screenshot
-      desc: Intelligent renaming of screenshots
-      accepted: yes
-      url: https://github.com/DASPRiD/gnome-shell-extension-area-screenshot/pull/11
-      tags: bash
-    - project: Bash
-      desc: Print last saved keyboard macro
-      accepted: no
-      url: https://savannah.gnu.org/patch/index.php?7634
-      tags: C
-    - project: Emacs textmate mode
-      desc: Multiple exclude pattern and default symbol completion enhancements
-      accepted: no
-      url: https://github.com/defunkt/textmate.el/pull/20
-      tags: elisp
----
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,9 +18,6 @@ patches:
 
     <style type="text/css">
       /* Override some defaults */
-      html, body {
-        background-color: #eee;
-      }
       body {
         padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
       }
@@ -174,7 +143,6 @@ patches:
               <li><a href="https://github.com/mgalgs">GitHub Profile</a></li>
               <li><a href="http://careers.stackoverflow.com/cv/publish/61463">Stack Overflow Careers Profile</a></li>
               <li><a href="http://stackoverflow.com/users/209050/mgalgs">Stack Overflow Profile</a></li>
-              <li><a href="https://aur.archlinux.org/packages.php?SeB=m&K=mitch_feaster">AUR Packages I Maintain</a></li>
             </ul>
 
             <h5>My Projects</h5>
@@ -195,26 +163,37 @@ patches:
               {% endfor %}
             </ul>
 
-            <h5>My Patches to Open Source Projects</h5>
+            <h5>Open Source</h5>
             <ul class="unstyled gray-list">
-              {% for patch in page.patches %}
               <li>
-                <a href="{{ patch.url }}">
-                  {% if patch.accepted %}
-                  <span class="label success">Accepted</span>
-                  {% else %}
-                  <span class="label warning">Pending</span>
-                  {% endif %}
-                  {% unless patch.tags == empty %}
-                  <span class="tags-list">
-                    [{{ patch.tags | join: ", " }}]
-                  </span>
-                  {% endunless %}
-                  {{ patch.project }} :: {{ patch.desc }}
-                </a>
+                <strong>My day job</strong>: Linux Kernel development
+                for <a href="http://www.quicinc.com/">QuIC</a>. Here
+                are my contributions on
+                the <a href="https://www.codeaurora.org/gitweb/quic/la/?p=kernel%2Fmsm.git&a=search&h=refs%2Fheads%2Fmsm-3.4&st=author&s=Mitchel+Humpherys">Code
+                Aurora Forum</a>.
               </li>
-              {% endfor %}
-            </ul> <!-- eo my patches -->
+              <li>
+                <strong>My nerd hobby</strong>: creating and
+                contributing to a variety of Open Source projects. See
+                my <a href="https://github.com/mgalgs">GitHub
+                profile</a>.
+              </li>
+            </ul>
+
+            <h5>Less Nerdy</h5>
+            <p>
+              There's nothing wrong with nerdiness, but there's also
+              nothing wrong with non-nerdiness.
+            </p>
+            <ul class="unstyled gray-list">
+              <li>
+                Some of <a href="https://soundcloud.com/mgalgs">my
+                original music</a> on SoundCloud.
+              </li>
+            </ul>
+
+            <br>
+            <br>
 
             <h5>Recent Posts</h5>
             <ul class="unstyled gray-list">
@@ -253,9 +232,12 @@ patches:
           <a href="https://github.com/shopify/liquid/wiki/liquid-for-designers">Liquid</a>,
           <a href="http://daringfireball.net/projects/markdown/">Markdown</a>,
           <a href="http://www.yaml.org/">YAML</a>,
-          <a href="http://twitter.github.com/bootstrap/">Bootstrap CSS</a>,
-          and
-          <a href="http://git-scm.com/">Git</a>.
+          <a href="http://git-scm.com/">Git</a>,
+          and (obviously)
+          <a href="http://twitter.github.com/bootstrap/">Bootstrap CSS</a>.
+          <br>
+          <br>
+          &copy; Mitchel Humpherys, Mitch Humpherys, Mitch{,el} Humpherys, 2013
         </p>
       </footer>
     </div> <!-- /container -->

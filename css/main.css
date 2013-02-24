@@ -1,3 +1,14 @@
+html, body {
+    background-color: #555;
+}
+footer {
+    background: #eee;
+    margin: 17px;
+    padding: 17px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
 .brand {
     font-family: 'Droid Sans Mono', sans-serif;
 }
@@ -27,7 +38,7 @@ pre {
 code {
     padding: 0;
 }
-ul.gray-list li a {
+ul.gray-list li {
     display: block;
     background: #E5E5E5;
     padding: 5px;
