@@ -5,7 +5,6 @@ tags: [linux, qemu, kernel]
 ---
 
 <div class="alert-message info">
-
 <b>Update:</b> it's working! No more kernel panic! Big thanks to
 Kckanth21 in the comments who helped point me in the right direction
 to get this thing working!
@@ -15,7 +14,6 @@ to get this thing working!
 href="http://www.landley.net/aboriginal/about.html">Aboriginal
 Linux</a> looks like a good way to play around with Linux on qemu... I
 would still recommend doing it manually at least once though :)
-
 </div>
 
 In this howto, we're going to build a Linux system from the ground up

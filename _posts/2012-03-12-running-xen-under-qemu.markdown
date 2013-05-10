@@ -5,12 +5,10 @@ tags: [linux, qemu, xen]
 ---
 
 <div class="alert-message info">
-
 <b>Note</b>: I never got any guest OS's working, so this post is kind
 of falls off a cliff at the end... However, I think the setup process
 is still interesting, so I'm leaving it here.
-
- </div>
+</div>
 
 I've been trying to learn more about hypervisors lately since, well,
 they're awesome. Also, I've always wanted to learn `qemu`, so I

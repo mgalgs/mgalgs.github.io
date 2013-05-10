@@ -1,6 +1,17 @@
 html, body {
     background-color: #555;
 }
+#main-content p {
+    font-size: 16px;
+    line-height: 20px;
+}
+code {
+    font-size: 14px;
+    background: #f0f0f0;
+}
+small {
+    font-size: 12px;
+}
 footer {
     background: #eee;
     margin: 17px;

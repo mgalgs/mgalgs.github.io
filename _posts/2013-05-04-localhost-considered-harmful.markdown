@@ -8,13 +8,7 @@ After a recent update to one of my CentOS servers that hosts some
 django applications, I started getting 502's with the following error
 message:
 
-<div style="overflow-x:scroll;width:100%;">
-<code style="white-space:nowrap;">
-2013/05/05 10:06:04 [alert] 1771#0: *22 socket() failed (97: Address family not supported by protocol) while connecting to upstream, client: X.X.X.X, server: example.com, request: "GET /bid/ HTTP/1.1", upstream: "http://[::1]:8001/bid/", host: "example.com:81"
-</code>
-</div>
-
-<br>
+    2013/05/05 10:06:04 [alert] 1771#0: *22 socket() failed (97: Address family not supported by protocol) while connecting to upstream, client: X.X.X.X, server: example.com, request: "GET /bid/ HTTP/1.1", upstream: "http://[::1]:8001/bid/", host: "example.com:81"
 
 To make matters worse, I was only seeing this error message
 intermittently. I could refresh the page 10 times and only see this
@@ -23,22 +17,12 @@ error 5/10 times.
 Everything I found online said something about commenting out a line
 like this one in your `nginx` config:
 
-<code style="white-space:nowrap;">
-listen   [::]:80 default ipv6only=on;
-</code>
-
-<br>
-<br>
+    listen   [::]:80 default ipv6only=on;
 
 However, I didn't have such a line in any of my configs. Then I
 noticed the following snippet from the error message above:
 
-<code style="white-space:nowrap;">
-upstream: "http://[::1]:8001/bid/"
-</code>
-
-<br>
-<br>
+    upstream: "http://[::1]:8001/bid/"
 
 and realized that `nginx` (or, more likely, the system routing code)
 was resolving `localhost` to `::1` (which is `localhost` in `ipv6`)! I
