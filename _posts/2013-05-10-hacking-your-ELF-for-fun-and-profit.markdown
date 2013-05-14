@@ -121,4 +121,11 @@ to the Linux kernel) to `do_initcalls` is as follows:
                    `--> do_initcalls
 
 
+### Summary
+
+Custom ELF sections can be useful for accumulating similar data
+(function pointers, for example) at compile time. With `gcc` magic
+variables or custom linker scripts you can access the start and end of
+those sections at runtime.
+
 Now go hack some ELFs!
