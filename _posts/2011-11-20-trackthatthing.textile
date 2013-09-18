@@ -16,8 +16,8 @@ h4. Overview
 
 "Track That Thing":http://www.trackthatthing.com/ is the first Android
 application I've developed. It allows you to easily record and share
-your location in real-time. It's available for free "from the Amazon
-Market":http://www.amazon.com/Mitchel-Humpherys-Track-That-Thing/dp/B0055IS3E2/ref=sr_1_4?ie=UTF8&qid=1322721494&sr=8-4.
+your location in real-time. It's available for free "on Google
+Play":https://play.google.com/store/apps/details?id=com.mgalgs.trackthatthing.
 The source code for the Android app as well as the Google App Engine
 app are "on GitHub":https://github.com/mgalgs/trackthatthing.
 
