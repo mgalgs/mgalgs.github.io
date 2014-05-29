@@ -1,3 +1,4 @@
 pygments: Yes
 safe: Yes
 exclude: ["newpost.sh", "publish_draft.sh"]
+markdown: kramdown
