@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git submodule update --init --remote --recursive Considered Harmful
-tags: [stuff, otherstuff]
+tags: [git]
 ---
 
 I use a repository ([gh.el](https://github.com/sigma/gh.el)) that has a submodule to itself. The `.gitmodules` looks like:
