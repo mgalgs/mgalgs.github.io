@@ -10,10 +10,14 @@ usage: $0 [options] title
 
 Options:
   -d    Start a draft
+
+title should be in the following format:
+
+    my-cool-new-post
 EOF
 }
 
-[[ $# -lt 1 || $1 == "--help" ]] && { usage; exit 1; }
+[[ $# -lt 1 || $1 == "--help" || $1 == "-h" ]] && { usage; exit 1; }
 
 while getopts dh opt; do
     case $opt in
