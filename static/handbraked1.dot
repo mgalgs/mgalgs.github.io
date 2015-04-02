@@ -1,8 +1,11 @@
 digraph G {
-    node [shape="box"];
-    udev -> "dd-one.sh" [label=" systemd",style=dotted];
+#    node [shape="box"];
+    "wait for disc" -> udev [label=" insert disc  "];
+    udev -> "dd-one.sh" [label=" systemd",style=dashed];
     "dd-one.sh" -> handbrakectl;
-    shell -> handbrakectl;
-    handbrakectl -> handbraked [label=" rabbitmq",style=dotted];
+    "dd-one.sh" -> eject;
+    eject -> "wait for disc";
+    // shell -> handbrakectl;
+    handbrakectl -> handbraked [label=" rabbitmq",style=dashed];
     handbraked -> Handbrake;
 }
