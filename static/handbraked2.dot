@@ -1,0 +1,9 @@
+digraph G {
+    node [shape="box"];
+    udev -> "dd-one.sh" [label=" systemd",style=dotted];
+    "dd-one.sh" -> handbrakectl;
+    shell -> handbrakectl;
+    handbrakectl -> handbraked [label=" rabbitmq",style=dotted];
+    "Other ripping frontends" -> handbraked [label=" rabbitmq",style=dotted];
+    handbraked -> Handbrake;
+}
