@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rafty -- DVD Backups using Systemd, Docker, Rabbitmq and go
+title: Rafty -- DVD Backups using Systemd, Docker, Rabbitmq, and go
 tags: [docker, systemd, rabbitmq, go, udev]
 ---
 
