@@ -4,10 +4,11 @@ title: Rafty -- DVD Backups using Systemd, Docker, Rabbitmq, and go
 tags: [docker, systemd, rabbitmq, go, udev]
 ---
 
-Rafty is a little project I built to help automate the process of backing
-up my DVD collection.
+Rafty is a scalable, fully-automated system for backing up DVD collections.
 
 Rafty stands for **R**ipper **a**nd **F**riggin' **T**ranscoder, **Y**'all.
+
+*Disclaimer: this is a backup solution only.  Don't pirate stuff.*
 
 # Background
 
@@ -25,11 +26,12 @@ main requirements were:
     Need to build a robot...)
 
   - The system shall be capable of scaling out arbitrarily so that idle
-    machines can be added to help speed things along.
+    machines I have laying around can be added to the pool to help the
+    cause.
 
 This also seemed like the perfect opportunity for me to use a few pieces of
-technology that I've been wanting to get my hands dirty with for a while.
-Specifically:
+technology that I've used in the past but haven't been able to really get
+my hands dirty with.  Specifically:
 
   - [Systemd](http://www.freedesktop.org/wiki/Software/systemd/)
   - [Docker](https://www.docker.com/)
@@ -38,31 +40,37 @@ Specifically:
 
 # Architecture
 
-The initial architecture ended up looking something like this:
+In its simplest configuration (a single host doing all the work), the Rafty
+architecture looks like this:
 
 <img src="/static/handbraked1.png">
 ([dot source](/static/handbraked1.dot))
 
-To summarize:
+Let's walk through that diagram:
 
   - `udev` listens for a DVD to be inserted and starts a "oneshot"
     `systemd` service.
 
-  - The `systemd` service launches (and monitors) a script that uses `dd`
-    to copy the disc to the local hard drive.
+  - The `systemd` service launches a script that uses `dd` to copy the disc
+    to the local hard drive.  We couldn't start our `dd` script directly
+    from our `udev` rule because of `udev`'s event timeout.  Plus we get
+    built-in logging and monitoring from `systemd`.
 
   - The script ejects the disc and uses `handbrakectl` (a program written
     in `go`) to submit a job to the `handbraked` daemon (another program
-    written in `go`) through a `rabbitmq` named queue.
+    written in `go`) through a `rabbitmq` named queue.  This step might
+    seem pointless right now but we need the queue there for when we start
+    scaling out (below).
 
-  - `handbraked` reads jobs off of the queue and invokes
+  - `handbraked` reads our job off of the queue and invokes
     [Handbrake](https://handbrake.fr/) for transcoding.  The output is
-    saved to the appropriate directory (on an 8TB
+    saved to the appropriate directory (an 8TB
     [`btrfs`](https://btrfs.wiki.kernel.org) RAID-1 volume) where it is
     immediately available to media consumers on my home network.
 
-It might seem like overkill (ok, ok, it *is* overkill) but a few fairly
-interesting properties fall out of this architecture:
+This is probably overkill if you're just just using one machine to do
+everything but a few fairly interesting properties fall out of this
+architecture:
 
   - Optical disc drives can be utilized at full capacity.  We don't have to
     wait for the transcode phase to finish before starting another copy
@@ -72,7 +80,7 @@ interesting properties fall out of this architecture:
     `systemd` environment variables, there's no hard-coding of device
     paths.
 
-  - Additional "copy frontends" can be added arbitrarily.  These can be
+  - Additional "ripping frontends" can be added arbitrarily.  These can be
     local (using `handbrakectl` to submit jobs for existing isos, for
     example), or (more interestingly) remote machines.  This lets us scale
     out our disc copying work (IO-intensive).

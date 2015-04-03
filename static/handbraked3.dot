@@ -2,6 +2,7 @@ digraph G {
     subgraph cluster_rip1 {
         label="Rip Node 1";
         color=blue;
+        style=bold;
         subgraph cluster_ddonefrontend {
             node [style=filled,fillcolor=white];
             style=filled;
@@ -9,7 +10,7 @@ digraph G {
             color=black;
             label="udev/systemd/dd-one frontend";
             "wait for disc" -> udev [label=" insert disc  "];
-            udev -> "dd-one.sh" [label=" systemd",style=dashed];
+            udev -> "dd-one.sh" [label=" dd-dvd@.service\n(systemd)",style=dashed];
             "dd-one.sh" -> eject;
             eject -> "wait for disc";
         }
@@ -17,7 +18,8 @@ digraph G {
         subgraph cluster_otherfrontends {
             node [style=filled,fillcolor=white];
             style=filled;
-            color=lightgrey;
+            fillcolor=lightgrey;
+            color=black;
             label="other ripping frontends"
             dotdotdot1 [shape=doublecircle,label="..."];
             dotdotdot2 [shape=doublecircle,label="..."];
@@ -33,6 +35,7 @@ digraph G {
     subgraph cluster_rip2 {
         label="Rip Node 2";
         color=blue;
+        style=bold;
         rip2dotdotdot1 [shape=doublecircle,label="..."];
         rip2dotdotdot2 [shape=doublecircle,label="..."];
         rip2dotdotdot3 [shape=doublecircle,label="..."];
@@ -45,11 +48,12 @@ digraph G {
     subgraph cluster_compute1 {
         label="Compute Node 1"
         color=red;
+        style=bold;
         subgraph cluster_transcodebackend1 {
             label="Transcode backend"
             style=filled;
             color=black;
-            fillcolor=lightblue;
+            fillcolor=lightgrey;
             node [style=filled,fillcolor=white];
             handbraked1 -> Handbrake1;
             handbraked1 [label="handbraked"];
@@ -60,6 +64,7 @@ digraph G {
     subgraph cluster_compute2 {
         label="Compute Node 2"
         color=red;
+        style=bold;
         subgraph cluster_transcodebackend2 {
             label="Transcode backend"
             style=filled;
@@ -81,10 +86,10 @@ digraph G {
     handbrakectl2 -> "rabbitmq":f0;
     rip2dotdotdot3 -> "rabbitmq":f0;
     copydotdotdot -> "rabbitmq":f0;
-    copydotdotdot [label="...",color=blue]
+    copydotdotdot [label="...",color=blue,style=bold]
 
     "rabbitmq":f4 -> handbraked1;
     "rabbitmq":f4 -> handbraked2;
     "rabbitmq":f4 -> computedotdotdot;
-    computedotdotdot [label="...",color=red];
+    computedotdotdot [label="...",color=red,style=bold];
 }

@@ -5,7 +5,7 @@ digraph G {
         fillcolor=lightgrey;
         label="Ripping frontend";
         "wait for disc" -> udev [label=" insert disc  "];
-        udev -> "dd-one.sh" [label=" systemd",style=dashed];
+        udev -> "dd-one.sh" [label=" dd-dvd@.service\n(systemd)",style=dashed];
         "dd-one.sh" -> handbrakectl;
         "dd-one.sh" -> eject;
         eject -> "wait for disc";
@@ -14,7 +14,7 @@ digraph G {
     subgraph cluster_compute_backend {
         label="Compute backend"
         style=filled;
-        fillcolor=lightblue;
+        fillcolor=lightgrey;
         node [style=filled,fillcolor=white];
         handbraked -> Handbrake;
     }
