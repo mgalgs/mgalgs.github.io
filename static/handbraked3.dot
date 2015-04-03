@@ -1,0 +1,90 @@
+digraph G {
+    subgraph cluster_rip1 {
+        label="Rip Node 1";
+        color=blue;
+        subgraph cluster_ddonefrontend {
+            node [style=filled,fillcolor=white];
+            style=filled;
+            fillcolor=lightgrey;
+            color=black;
+            label="udev/systemd/dd-one frontend";
+            "wait for disc" -> udev [label=" insert disc  "];
+            udev -> "dd-one.sh" [label=" systemd",style=dashed];
+            "dd-one.sh" -> eject;
+            eject -> "wait for disc";
+        }
+
+        subgraph cluster_otherfrontends {
+            node [style=filled,fillcolor=white];
+            style=filled;
+            color=lightgrey;
+            label="other ripping frontends"
+            dotdotdot1 [shape=doublecircle,label="..."];
+            dotdotdot2 [shape=doublecircle,label="..."];
+            dotdotdot3 [shape=doublecircle,label="..."];
+        }
+
+        dotdotdot1 -> handbrakectl;
+        dotdotdot2 -> handbrakectl;
+        dotdotdot3 -> handbrakectl;
+        "dd-one.sh" -> handbrakectl;
+    }
+
+    subgraph cluster_rip2 {
+        label="Rip Node 2";
+        color=blue;
+        rip2dotdotdot1 [shape=doublecircle,label="..."];
+        rip2dotdotdot2 [shape=doublecircle,label="..."];
+        rip2dotdotdot3 [shape=doublecircle,label="..."];
+
+        rip2dotdotdot1 -> handbrakectl2;
+        rip2dotdotdot2 -> handbrakectl2;
+        handbrakectl2 [label="handbrakectl"];
+    }
+
+    subgraph cluster_compute1 {
+        label="Compute Node 1"
+        color=red;
+        subgraph cluster_transcodebackend1 {
+            label="Transcode backend"
+            style=filled;
+            color=black;
+            fillcolor=lightblue;
+            node [style=filled,fillcolor=white];
+            handbraked1 -> Handbrake1;
+            handbraked1 [label="handbraked"];
+            Handbrake1 [label="Handbrake"];
+        }
+    }
+
+    subgraph cluster_compute2 {
+        label="Compute Node 2"
+        color=red;
+        subgraph cluster_transcodebackend2 {
+            label="Transcode backend"
+            style=filled;
+            color=black;
+            fillcolor=lightblue;
+            node [style=filled,fillcolor=white];
+            handbraked2 -> Handbrake2;
+            handbraked2 [label="handbraked"];
+            Handbrake2 [label="Handbrake"];
+        }
+    }
+
+    "rabbitmq" [
+              shape = "record";
+              label = "{ <f0> | <f1> | <f2> rabbitmq | <f3> | <f4> }";
+              ];
+    
+    handbrakectl -> "rabbitmq":f0;
+    handbrakectl2 -> "rabbitmq":f0;
+    rip2dotdotdot3 -> "rabbitmq":f0;
+    copydotdotdot -> "rabbitmq":f0;
+    copydotdotdot [label="...",color=blue]
+
+    "rabbitmq":f4 -> handbraked1;
+    "rabbitmq":f4 -> handbraked2;
+    "rabbitmq":f4 -> computedotdotdot;
+    computedotdotdot [label="...",color=red];
+}

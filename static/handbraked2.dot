@@ -6,7 +6,6 @@ digraph G {
         label="udev/systemd/dd-one frontend";
         "wait for disc" -> udev [label=" insert disc  "];
         udev -> "dd-one.sh" [label=" systemd",style=dashed];
-        "dd-one.sh" -> handbrakectl;
         "dd-one.sh" -> eject;
         eject -> "wait for disc";
     }
@@ -17,8 +16,10 @@ digraph G {
         color=lightgrey;
         label="other ripping frontends"
         "..." [shape=doublecircle];
-    } -> handbraked [label=" rabbitmq",style=dotted];
+    }
 
+    "..." -> handbrakectl;
+    "dd-one.sh" -> handbrakectl;
     handbrakectl -> handbraked [label=" rabbitmq",style=dashed];
     handbraked -> Handbrake;
 }

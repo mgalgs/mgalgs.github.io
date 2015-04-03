@@ -1,11 +1,29 @@
 digraph G {
-#    node [shape="box"];
-    "wait for disc" -> udev [label=" insert disc  "];
-    udev -> "dd-one.sh" [label=" systemd",style=dashed];
-    "dd-one.sh" -> handbrakectl;
-    "dd-one.sh" -> eject;
-    eject -> "wait for disc";
-    // shell -> handbrakectl;
-    handbrakectl -> handbraked [label=" rabbitmq",style=dashed];
-    handbraked -> Handbrake;
+    subgraph cluster_ddonefrontend {
+        node [style=filled,fillcolor=white];
+        style=filled;
+        fillcolor=lightgrey;
+        label="Ripping frontend";
+        "wait for disc" -> udev [label=" insert disc  "];
+        udev -> "dd-one.sh" [label=" systemd",style=dashed];
+        "dd-one.sh" -> handbrakectl;
+        "dd-one.sh" -> eject;
+        eject -> "wait for disc";
+    }
+
+    subgraph cluster_compute_backend {
+        label="Compute backend"
+        style=filled;
+        fillcolor=lightblue;
+        node [style=filled,fillcolor=white];
+        handbraked -> Handbrake;
+    }
+
+    "rabbitmq" [
+              shape = "record";
+              label = "{ <f0> | <f1> | <f2> rabbitmq | <f3> | <f4> }";
+              ];
+
+    handbrakectl -> "rabbitmq":f0;
+    "rabbitmq":f4 -> handbraked;
 }
