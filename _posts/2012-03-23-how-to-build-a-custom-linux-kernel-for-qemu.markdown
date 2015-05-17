@@ -4,17 +4,15 @@ title: How to Build A Custom Linux Kernel For Qemu
 tags: [linux, qemu, kernel]
 ---
 
-<div class="alert-message info">
-<b>Update:</b> it's working! No more kernel panic! Big thanks to
-Kckanth21 in the comments who helped point me in the right direction
-to get this thing working!
 <br>
-<br>
-<b>Update 2:</b> I haven't played with it yet, but <a
-href="http://www.landley.net/aboriginal/about.html">Aboriginal
-Linux</a> looks like a good way to play around with Linux on qemu... I
-would still recommend doing it manually at least once though :)
+
+<div class="alert-message info" style="font-size:19px; line-height:normal;">
+<strong>Update:</strong> I've revisited this topic and updated it for 2015.  Please
+see: <a href="{% post_url 2015-05-16-how-to-build-a-custom-linux-kernel-for-qemu-2015-edition %}">
+How to Build a Custom linux Kernel for Qemu (2015 Edition)</a>
 </div>
+
+<hr>
 
 In this howto, we're going to build a Linux system from the ground up
 using kernel sources from kernel.org and a busybox-based `initramfs`,
