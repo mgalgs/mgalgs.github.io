@@ -9,7 +9,7 @@ This is an updated version of my
 
 In this tutorial, we'll be building a custom Linux kernel and userland to
 run on `qemu`.  We'll start with something basic and easy, then we'll
-whittle it down until we're booting straight to an infinite loop of `nop`
+whittle it down until we're booting straight to an infinite loop of `nop`s
 (ok, not quite that far).  The host and target will both be x86.
 
 # Preparation
@@ -24,7 +24,7 @@ kernel and Busybox.  Download and extract them now:
 
     $ cd $TOP
     $ curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.0.3.tar.xz | tar xJf -
-    $ curl http://busybox.net/downloads/busybox-1.23.2.tar.bz2 | tar xjf
+    $ curl http://busybox.net/downloads/busybox-1.23.2.tar.bz2 | tar xjf -
 
 # Busybox Userland
 
@@ -36,8 +36,8 @@ minimal filesystem hierarchy and package it up in an
 Let's go configure `busybox` now:
 
     $ cd $TOP/busybox-1.23.2
-    $ mkdir obj-x86
-    $ make O=obj-x86 defconfig
+    $ mkdir ../obj/busybox-x86
+    $ make O=../obj/busybox-x86 defconfig
 
 (Note: in the `busybox` build system, `O=` means "place build output here".
 This allows you to host multiple different configurations out of the same
@@ -48,27 +48,29 @@ here and just statically link `busybox` in order to avoid fiddling with
 shared libraries.  We'll need to use `busybox`'s `menuconfig` interface to
 enable static linking:
 
-    $ make O=obj-x86 menuconfig 
+    $ make O=../obj/busybox-x86 menuconfig 
 
 type `/`, search for "static".  You'll see that the option is located at:
 
     -> Busybox Settings
       -> Build Options
+    [ ] Build BusyBox as a static binary (no shared libs)
 
 Go to that location, select it, save, and exit.
 
 Now build `busybox`:
 
-    $ cd obj-x86
+    $ cd ../obj/busybox-x86
     $ make -j2
+    $ make install
 
 So far so good.  With a statically-linked `busybox` in hand we can build
 the directory structure for our `initramfs`:
 
-    $ mkdir -p $TOP/initramfs-x86-busybox/root
-    $ cd $TOP/initramfs-x86-busybox/root
-    $ mkdir -pv {bin,sbin,etc,proc,sys,newroot,usr/{bin,sbin}}
-    $ cp -v ../../busybox-1.23.2/obj-x86/busybox bin
+    $ mkdir -p $TOP/initramfs/x86-busybox
+    $ cd $TOP/initramfs/x86-busybox
+    $ mkdir -pv {bin,sbin,etc,proc,sys,usr/{bin,sbin}}
+    $ cp -av $TOP/obj/busybox-x86/_install/* .
 
 Of course, there's a lot missing from this skeleton hierarachy that will
 cause a lot of applications to break (no `/etc/passwd`, for example), but
@@ -101,11 +103,11 @@ We're now ready to `cpio` everything up:
 
     $ find . -print0 \
         | cpio --null -ov --format=newc \
-        | gzip -9 > ../initramfs.cpio.gz
+        | gzip -9 > $TOP/obj/initramfs-busybox-x86.cpio.gz
 
-We now have a minimal userland that we can pass to `qemu` as an `initrd`
-(using the `-initrd` option).  But before we can do that we need a
-kernel...
+We now have a minimal userland in `$TOP/obj/initramfs-busybox-x86.cpio.gz`
+that we can pass to `qemu` as an `initrd` (using the `-initrd` option).
+But before we can do that we need a kernel...
 
 
 # Linux Kernel
@@ -116,24 +118,25 @@ As a point of comparison, let's build a kernel using the default `x86_64`
 configuration that ships with the kernel tree.  Apply the configuration
 like so:
 
-    $ make O=obj-x86-basic x86_64_defconfig
+    $ cd $TOP/linux-4.0.3
+    $ make O=../obj/linux-x86-basic x86_64_defconfig
 
 We can also merge in a few config options that improve
 performance/functionality of kvm guests with:
 
-    $ make O=obj-x86-basic kvmconfig
+    $ make O=../obj/linux-x86-basic kvmconfig
 
 The kernel is now configured and ready to build.  Go ahead and build it:
 
-    $ make O=obj-x86-basic -j2
+    $ make O=../obj/linux-x86-basic -j2
 
 Now that we have a kernel and a userland, we're ready to boot!  You can use
 `qemu-system-x86_64` to try out your new system:
 
     $ cd $TOP
     $ qemu-system-x86_64 \
-        -kernel linux-4.0.3/obj-x86-basic/arch/x86_64/boot/bzImage \
-        -initrd initramfs-x86-busybox/initramfs.cpio.gz \
+        -kernel obj/linux-x86-basic/arch/x86_64/boot/bzImage \
+        -initrd obj/initramfs-busybox-x86.cpio.gz \
         -nographic -append "console=ttyS0"
 
 Exit the VM by hitting `Ctl-a c` then typing "quit" at the `qemu` monitor
@@ -144,8 +147,8 @@ If your host processor and kernel have
 you can add the `-enable-kvm` flag to really speed things up:
 
     $ qemu-system-x86_64 \
-        -kernel linux-4.0.3/obj-x86-basic/arch/x86_64/boot/bzImage \
-        -initrd initramfs-x86-busybox/initramfs.cpio.gz \
+        -kernel obj/linux-x86-basic/arch/x86_64/boot/bzImage \
+        -initrd obj/initramfs-busybox-x86.cpio.gz \
         -nographic -append "console=ttyS0" -enable-kvm
 
 ## Smaller Kernel Config
@@ -166,7 +169,7 @@ You can apply this more conservative configuration based on the Kbuild
 defaults by using the `alldefconfig` target:
 
     $ cd $TOP/linux-4.0.3
-    $ make O=obj-x86-alldefconfig alldefconfig
+    $ make O=../obj/linux-x86-alldefconfig alldefconfig
 
 We need to enable a few more options in order to actually be able to use
 this configuration.
@@ -175,7 +178,7 @@ First, we need to enable a serial driver so that we can get a serial
 console.  Run your preferred kernel configurator (I like `nconfig`, but you
 can use `menuconfig`, `xconfig`, etc.):
 
-    $ make O=obj-x86-alldefconfig nconfig
+    $ make O=../obj/linux-x86-alldefconfig nconfig
 
 Navigate to:
 
@@ -203,17 +206,17 @@ what we're using.
 Finally, enable some features for `kvm` guests (not actually necessary to
 get the system booting, but hey):
 
-    $ make O=obj-x86-alldefconfig kvmconfig
+    $ make O=../obj/linux-x86-alldefconfig kvmconfig
 
 And build:
 
-    $ make O=obj-x86-alldefconfig -j2
+    $ make O=../obj/linux-x86-alldefconfig -j2
 
 We now have a much smaller kernel image:
 
-    $ du -hs linux-4.0.3/obj-x86-*/vmlinux
-    18M     linux-4.0.3/obj-x86-basic/vmlinux
-    6.0M    linux-4.0.3/obj-x86-alldefconfig/vmlinux
+    $ (cd $TOP; du -hs obj/linux-x86-*/vmlinux)
+    18M     obj/linux-x86-basic/vmlinux
+    6.0M    obj/linux-x86-alldefconfig/vmlinux
 
 And it boots faster too!
 
@@ -242,7 +245,7 @@ nothing.  The kernel build system has a `make` target for this:
 `allnoconfig`.  Let's create a new configuration based on that:
 
     $ cd $TOP/linux-4.0.3
-    $ make O=obj-x86-allnoconfig allnoconfig
+    $ make O=$TOP/obj/linux-x86-allnoconfig allnoconfig
 
 Now everything that *can* be turned off *is* turned off.  This is as low as
 it goes without hacking up the kernel source.  As one might expect, we have
@@ -279,10 +282,10 @@ In order to keep things truly tiny, we'll skip `make kvmconfig`.  The
 resulting image is quite a bit smaller than our last one, and *way* smaller
 than the one based on `x86_64_defconfig`:
 
-    $ du -hs linux-4.0.3/obj-x86-*/vmlinux
-    18M     linux-4.0.3/obj-x86-basic/vmlinux
-    6.0M    linux-4.0.3/obj-x86-alldefconfig/vmlinux
-    2.6M    linux-4.0.3/obj-x86-allnoconfig/vmlinux
+    $ (cd $TOP; du -hs linux-4.0.3/obj-x86-*/vmlinux)
+    18M     obj/linux-x86-basic/vmlinux
+    6.0M    obj/linux-x86-alldefconfig/vmlinux
+    2.6M    obj/linux-x86-allnoconfig/vmlinux
 
 Adding `make kvmconfig` increases the image size to 5M, so `allnoconfig`
 isn't actually a huge win in terms of size against `alldefconfig`.
