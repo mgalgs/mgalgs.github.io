@@ -218,7 +218,14 @@ We now have a much smaller kernel image:
     18M     obj/linux-x86-basic/vmlinux
     6.0M    obj/linux-x86-alldefconfig/vmlinux
 
-And it boots faster too!
+Now you can boot the new kernel (with our same userspace):
+
+    $ qemu-system-x86_64 \
+        -kernel obj/linux-x86-alldefconfig/arch/x86_64/boot/bzImage \
+        -initrd obj/initramfs-busybox-x86.cpio.gz \
+        -nographic -append "console=ttyS0" -enable-kvm
+
+Not only is it smaller than the last one, but it boots faster too!
 
 <table>
   <tr>
@@ -278,9 +285,12 @@ Here are the options you need to turn on:
     [*] /proc file system support
     [*] sysfs file system support
 
-In order to keep things truly tiny, we'll skip `make kvmconfig`.  The
-resulting image is quite a bit smaller than our last one, and *way* smaller
-than the one based on `x86_64_defconfig`:
+In order to keep things truly tiny, we'll skip `make kvmconfig`.  Build it:
+
+    $ make O=../obj/linux-x86-alldefconfig -j2
+
+The resulting image is quite a bit smaller than our last one, and *way*
+smaller than the one based on `x86_64_defconfig`:
 
     $ (cd $TOP; du -hs linux-4.0.3/obj-x86-*/vmlinux)
     18M     obj/linux-x86-basic/vmlinux
@@ -289,6 +299,13 @@ than the one based on `x86_64_defconfig`:
 
 Adding `make kvmconfig` increases the image size to 5M, so `allnoconfig`
 isn't actually a huge win in terms of size against `alldefconfig`.
+
+And boot it:
+
+    $ qemu-system-x86_64 \
+        -kernel obj/linux-x86-allnoconfig/arch/x86_64/boot/bzImage \
+        -initrd obj/initramfs-busybox-x86.cpio.gz \
+        -nographic -append "console=ttyS0" -enable-kvm
 
 Our new tiniest kernel boots about twice as fast as the `alldefconfig` one
 and about 5x as fast as the one based on `x86_64_defconfig`.  Adding
