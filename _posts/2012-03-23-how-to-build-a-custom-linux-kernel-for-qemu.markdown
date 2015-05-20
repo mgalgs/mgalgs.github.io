@@ -6,11 +6,12 @@ tags: [linux, qemu, kernel]
 
 <br>
 
-<div class="alert-message info" style="font-size:19px; line-height:normal;">
-<strong>Update:</strong> I've revisited this topic and updated it for 2015.  Please
-see: <a href="{% post_url 2015-05-16-how-to-build-a-custom-linux-kernel-for-qemu-2015-edition %}">
-How to Build a Custom linux Kernel for Qemu (2015 Edition)</a>
-</div>
+<p>
+  <span class="label warning">Heads up</span>
+  Please see my updated version of this tutorial: <a href="{% post_url 2015-05-16-how-to-build-a-custom-linux-kernel-for-qemu-2015-edition %}">
+  How to Build a Custom linux Kernel for Qemu (2015 Edition)</a>.  I'm
+  leaving this post here for historical purposes only.
+</p>
 
 <hr>
 
