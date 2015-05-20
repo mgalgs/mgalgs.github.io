@@ -265,6 +265,7 @@ Here are the options you need to turn on:
     -> General setup
       -> Configure standard kernel features
     [*] Enable support for printk
+    [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
 
     -> Executable file formats / Emulations
     [*] Kernel support for ELF binaries
