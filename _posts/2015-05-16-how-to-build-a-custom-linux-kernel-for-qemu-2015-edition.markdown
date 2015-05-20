@@ -36,7 +36,7 @@ minimal filesystem hierarchy and package it up in an
 Let's go configure `busybox` now:
 
     $ cd $TOP/busybox-1.23.2
-    $ mkdir ../obj/busybox-x86
+    $ mkdir -pv ../obj/busybox-x86
     $ make O=../obj/busybox-x86 defconfig
 
 (Note: in the `busybox` build system, `O=` means "place build output here".
@@ -48,7 +48,7 @@ here and just statically link `busybox` in order to avoid fiddling with
 shared libraries.  We'll need to use `busybox`'s `menuconfig` interface to
 enable static linking:
 
-    $ make O=../obj/busybox-x86 menuconfig 
+    $ make O=../obj/busybox-x86 menuconfig
 
 type `/`, search for "static".  You'll see that the option is located at:
 
