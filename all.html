@@ -1,0 +1,28 @@
+---
+layout: default
+title: All Posts
+---
+
+<h2>All Posts</h2>
+<ul class="unstyled posts">
+  {% for post in site.posts %}
+  {% unless post.category %}
+  <li>
+    <div class="row">
+      <div class="span2">
+        <div class="label pull-right" style="width:80px;text-align:center;">{{ post.date | date_to_string }}</div>
+      </div>
+      <div class="span8">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        {% unless post.tags == empty %}
+        <span class="tags-list">
+          <span> :: </span>
+          {{ post.tags | join: ", " }}
+        </span>
+        {% endunless %}
+      </div> <!-- span7 -->
+    </div>   <!-- row -->
+  </li>
+  {% endunless %}
+  {% endfor %}
+</ul>
