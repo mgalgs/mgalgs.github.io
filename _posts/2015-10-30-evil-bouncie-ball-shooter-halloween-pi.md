@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Halloween Pi (and stuff)
+title: Evil Bouncie Ball Shoorter (Halloween Pi)
 tags: [electronics, hardware, raspberry-pi, avr, atmega8]
 ---
 
