@@ -17,11 +17,14 @@ merited a quick blog post.  So without further ado, let's dive in...
 
 # The Brains
 
-Here's the full schematic:
+Here's the (mostly) full schematic:
 
 <a href="/images/halloween-2015-circuit.png">
 <img src="/images/halloween-2015-circuit.png" style="width:300px;">
 </a>
+
+For the rest of the Atmega8 connections, refer to my post about my
+[Atmega8 bare bones dev board](/2015/10/30/atmega8-bare-bones-dev-board.html).
 
 As you can see from the schematic below, there are actually two separate
 CPUs in this project: a Raspberry Pi and an Atmega8.  Why two brains?  Why
