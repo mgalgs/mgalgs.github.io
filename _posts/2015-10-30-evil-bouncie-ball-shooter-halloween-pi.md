@@ -7,7 +7,7 @@ tags: [electronics, hardware, raspberry-pi, avr, atmega8]
 I had so much fun
 [shooting trick-or-treaters with silly string](https://www.youtube.com/watch?v=N_VGspit7Xk)
 last year that I decided to up the ante this year with an "Evil Bouncey
-Ball Shooter".  Before getting into the nitty gritty, here's the final
+Ball Shooter".  Before diving into the details, here's the final
 product in action at our local "Trunk or Treat":
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/al_0_y3Uv1I?rel=0" frameborder="0" allowfullscreen></iframe>
