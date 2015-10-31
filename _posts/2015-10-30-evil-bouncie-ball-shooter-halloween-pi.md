@@ -28,7 +28,7 @@ For the rest of the Atmega8 connections, refer to my post about my
 
 As you can see from the schematic below, there are actually two separate
 CPUs in this project: a Raspberry Pi and an Atmega8.  Why two brains?  Why
-not!?  Actually, originally I had planned on doing the whole thing with
+not!?  Actually, I had originally planned on doing the whole thing with
 just the Pi, but it turns out that the Raspberry Pi A only has one PWM
 channel, and that's needed to run the audio headphone jack, but I needed
 PWM to control my servo as well.  So that's why I had to throw the Atmega8
