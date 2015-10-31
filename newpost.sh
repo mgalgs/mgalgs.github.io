@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MYEDITOR="emacsclient -n -a emacs"
-MYMARKUP=markdown
+MYMARKUP=md
 
 usage()
 {
