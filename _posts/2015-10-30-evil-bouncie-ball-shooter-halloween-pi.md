@@ -75,7 +75,7 @@ was in business.  I also could have just switched to a logic-level MOSFET.
 
 The Raspberry Pi and Atmega8 talk to each other over I2C.
 
-  - [AVR initialization code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/firmware/main.c#L62)
+  - [AVR initialization code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/firmware/main.c#L127)
   - [Pi initialization code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/main.py#L58)
   - [AVR communication code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/firmware/main.c#L173)
   - [Pi communication code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/main.py#L80)
