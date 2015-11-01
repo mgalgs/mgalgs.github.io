@@ -89,15 +89,15 @@ Atmega8 since doing it on the Pi conflicted with its audio output.
   - [AVR servo initialization code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/firmware/main.c#L32)
   - [AVR servo angle-setting code](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/firmware/main.c#L62)
 
-I was seeing erratic behavior of my servo that I finally debugged to being
-an incorrect clock fuse settings on the Atmega8.  I used my
+At first my servo was behaving somewhat erratically.  Suspecting a bad
+control signal, I used my
 [bus pirate](http://dangerousprototypes.com/bus-pirate-manual/) to measure
-the frequency of the PWM signal and noticed it was exactly half the
-frequency I expected.  After rechecking my math and counter settings I
-finally determined my Atmega8's clock must be messed up.  Sure enough, my
+the frequency of the PWM signal. Sure enough, it as bad. It was exactly half the
+frequency I needed.  After rechecking my math and counter settings I
+finally determined that my Atmega8's clock must be messed up.  Sure enough, my
 clock fuse settings were incorrect.
 [Here](https://github.com/mgalgs/halloween-2015/commit/1c1d02e116a69597d31ddfd92860a179c201a2d0)'s
-the patch to fix them.  I freaking love my bus pirate...
+the patch to fix them.  The bus pirate is so handy...
 
 # Distance Sensor
 
@@ -121,7 +121,7 @@ I wrote
 [a simple `systemd` service file](https://github.com/mgalgs/halloween-2015/blob/eaa55592d4fcbc568860973247ca2cd6ac5cac35/halloween-py.service)
 to get things running as soon as the Pi boots up.  Works like a charm, and
 even lets me see all my `mpg123` subprocesses in a nice little tree view.
-Sorry, `systemd` haters :).
+Sorry, `systemd` haters, I'm kind of a fan :).
 
 # Source Code
 
