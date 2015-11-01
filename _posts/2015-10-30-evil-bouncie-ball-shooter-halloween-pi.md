@@ -69,7 +69,7 @@ these days and the fine folks over there
 [set me straight](http://electronics.stackexchange.com/questions/197120/solenoid-doesnt-actuate-when-driven-through-mosfet/)
 in no time.  What I needed was a MOSFET driver between the GPIO and the
 MOSFET.  After throwing [this guy](http://amzn.com/B00DK2C7YM) in there I
-was in business.  I also could have just switched to a logic-level MOSFET.
+was in business.  I also could have switched to a logic-level MOSFET but the MOSFET driver was shipping faster so that's what I went with.
 
 # I2C for Inter Chip Communication
 
