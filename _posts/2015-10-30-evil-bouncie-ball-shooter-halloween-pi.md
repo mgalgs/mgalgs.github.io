@@ -12,7 +12,7 @@ product in action at our local "Trunk or Treat":
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/al_0_y3Uv1I?rel=0" frameborder="0" allowfullscreen></iframe>
 
-Here's the frankensteinian electronics:
+Here are the frankensteinian electronics:
 
 <a href="/images/halloween-2015-board-and-stuff.jpg">
 <img src="/images/halloween-2015-board-and-stuff.jpg" style="width:300px;">
