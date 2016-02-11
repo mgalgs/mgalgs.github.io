@@ -105,9 +105,9 @@ bottleneck here would be `rabbitmq` message throughput, and these messages
 are tiny.  The bigger problem for me is the fact that I only have one
 machine with a single optical disc drive to dedicate to this :).
 
-Blatant over-engineering aside, this project was a lot of fun and helped me
-learn more about some new and interesting technologies.  Hope you enjoyed
-it!
+Gratuitous over-engineering aside, this project was a lot of fun and helped
+me learn more about some new and interesting technologies.  Hope you
+enjoyed it!
 
 # Source
 
