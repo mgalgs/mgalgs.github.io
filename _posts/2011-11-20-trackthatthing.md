@@ -3,7 +3,7 @@ layout: post
 title: Track That Thing
 permalink: /projects/trackthatthing.html
 category: projects
-tags: [android, google app engine]
+tags: [android, django]
 ---
 
 ## Overview
@@ -36,6 +36,5 @@ glympse.)
 
 ## Screenshots
 
-<img src="http://i.imgur.com/vOrk1.jpg" width="500" />
-<img src="http://ecx.images-amazon.com/images/I/41UFFDbAmjL.jpg" />
-<img src="http://ecx.images-amazon.com/images/I/41uBd%2B8cmXL.jpg" />
+<img src="/static/ttt-screenshot-map.webp" />
+<img src="/static/ttt-screenshot-tracking.webp" />
