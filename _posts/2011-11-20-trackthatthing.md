@@ -36,5 +36,5 @@ glympse.)
 
 ## Screenshots
 
-<img src="/static/ttt-screenshot-map.webp" />
-<img src="/static/ttt-screenshot-tracking.webp" />
+<img src="/static/ttt-screenshot-map.webp" width="300" />
+<img src="/static/ttt-screenshot-tracking.webp" width="300" />
