@@ -1,4 +1,4 @@
-highlighter: 'pygments'
+highlighter: rouge
 safe: Yes
 exclude: ["newpost.sh", "publish_draft.sh"]
 markdown: kramdown
