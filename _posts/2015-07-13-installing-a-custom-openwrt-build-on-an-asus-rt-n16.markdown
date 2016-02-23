@@ -83,9 +83,12 @@ them into the firmware image, but oh well.
 
 You're now ready to build:
 
-    $ make -jN
+    $ make -jN |& tee build.log
 
-where `N` equals the number of cpus on the build host plus one.
+where `N` equals the number of cpus on the build host plus one.  To
+increase verbosity and also ignore build errors in optional modules, use:
+
+    $ make -jN V=99 IGNORE_ERRORS=m |& tee build.log
 
 Once that's done (took around an hour on my machine) our freshly-cooked
 firmware image will be in the `bin/bcm47xx` directory.
