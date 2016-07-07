@@ -15,7 +15,7 @@ these error messages get annoying fast.  As described
 [here](http://stackoverflow.com/questions/15238506/djangos-suspiciousoperation-invalid-http-host-header),
 one good way of dealing with this problem is to kill these requests before
 they even hit your Django app.  There's an example of how to do this with
-nginx [here](http://stackoverflow.com/a/17477436/209050).
+`nginx` [here](http://stackoverflow.com/a/17477436/209050).
 
 If you're using `haproxy` you can achieve a similar result with an acl and
 a backend:
