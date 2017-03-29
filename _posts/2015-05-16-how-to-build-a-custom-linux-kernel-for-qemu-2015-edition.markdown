@@ -12,19 +12,22 @@ run on `qemu`.  We'll start with something basic and easy, then we'll
 whittle it down until we're booting straight to an infinite loop of `nop`s
 (ok, not quite that far).  The host and target will both be x86.
 
+*(UPDATE) 2017-03-29:* kernel and busybox versions updated to the latest
+stable releases.
+
 # Preparation
 
 First, create a workspace:
 
-    $ mkdir $HOME/teeny-linux
     $ TOP=$HOME/teeny-linux
+    $ mkdir $TOP
 
 Our entire system will be composed of exactly two packages: the Linux
 kernel and Busybox.  Download and extract them now:
 
     $ cd $TOP
-    $ curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.0.3.tar.xz | tar xJf -
-    $ curl http://busybox.net/downloads/busybox-1.23.2.tar.bz2 | tar xjf -
+    $ curl https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.10.6.tar.xz | tar xJf -
+    $ curl https://busybox.net/downloads/busybox-1.26.2.tar.bz2 | tar xjf -
 
 # Busybox Userland
 
@@ -35,7 +38,7 @@ minimal filesystem hierarchy and package it up in an
 
 Let's go configure `busybox` now:
 
-    $ cd $TOP/busybox-1.23.2
+    $ cd $TOP/busybox-1.26.2
     $ mkdir -pv ../obj/busybox-x86
     $ make O=../obj/busybox-x86 defconfig
 
@@ -67,7 +70,7 @@ Now build `busybox`:
 So far so good.  With a statically-linked `busybox` in hand we can build
 the directory structure for our `initramfs`:
 
-    $ mkdir -p $TOP/initramfs/x86-busybox
+    $ mkdir -pv $TOP/initramfs/x86-busybox
     $ cd $TOP/initramfs/x86-busybox
     $ mkdir -pv {bin,sbin,etc,proc,sys,usr/{bin,sbin}}
     $ cp -av $TOP/obj/busybox-x86/_install/* .
@@ -114,11 +117,11 @@ But before we can do that we need a kernel...
 
 ## Basic Kernel Config
 
-As a point of comparison, let's build a kernel using the default `x86_64`
-configuration that ships with the kernel tree.  Apply the configuration
-like so:
+For our not-yet-trimmed-down baseline, let's build a kernel using the
+default `x86_64` configuration that ships with the kernel tree.  Apply the
+configuration like so:
 
-    $ cd $TOP/linux-4.0.3
+    $ cd $TOP/linux-4.10.6
     $ make O=../obj/linux-x86-basic x86_64_defconfig
 
 We can also merge in a few config options that improve
@@ -168,7 +171,7 @@ generally useful features and work on a wide variety of x86 targets.
 You can apply this more conservative configuration based on the Kbuild
 defaults by using the `alldefconfig` target:
 
-    $ cd $TOP/linux-4.0.3
+    $ cd $TOP/linux-4.10.6
     $ make O=../obj/linux-x86-alldefconfig alldefconfig
 
 We need to enable a few more options in order to actually be able to use
@@ -215,8 +218,8 @@ And build:
 We now have a much smaller kernel image:
 
     $ (cd $TOP; du -hs obj/linux-x86-*/vmlinux)
-    18M     obj/linux-x86-basic/vmlinux
-    6.0M    obj/linux-x86-alldefconfig/vmlinux
+    6.5M    obj/linux-x86-alldefconfig/vmlinux
+    19M     obj/linux-x86-basic/vmlinux
 
 Now you can boot the new kernel (with our same userspace):
 
@@ -251,13 +254,18 @@ Let's prune the image down even further by starting with absolutely
 nothing.  The kernel build system has a `make` target for this:
 `allnoconfig`.  Let's create a new configuration based on that:
 
-    $ cd $TOP/linux-4.0.3
+    $ cd $TOP/linux-4.10.6
     $ make O=$TOP/obj/linux-x86-allnoconfig allnoconfig
 
 Now everything that *can* be turned off *is* turned off.  This is as low as
 it goes without hacking up the kernel source.  As one might expect, we have
 a little more work to do in order to get something that actually boots in
-`qemu`, but it's still not too bad, which is actually pretty incredible.
+`qemu`.  There isn't a ton to do, which is actually pretty incredible.
+
+Fire up your kernel configurator:
+
+    $ make O=../obj/linux-x86-allnoconfig nconfig
+
 Here are the options you need to turn on:
 
     [*] 64-bit kernel
@@ -265,6 +273,8 @@ Here are the options you need to turn on:
     -> General setup
       -> Configure standard kernel features
     [*] Enable support for printk
+
+    -> General setup
     [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
 
     -> Executable file formats / Emulations
@@ -288,15 +298,15 @@ Here are the options you need to turn on:
 
 In order to keep things truly tiny, we'll skip `make kvmconfig`.  Build it:
 
-    $ make O=../obj/linux-x86-alldefconfig -j2
+    $ make O=../obj/linux-x86-allnoconfig -j2
 
 The resulting image is quite a bit smaller than our last one, and *way*
 smaller than the one based on `x86_64_defconfig`:
 
-    $ (cd $TOP; du -hs linux-4.0.3/obj-x86-*/vmlinux)
-    18M     obj/linux-x86-basic/vmlinux
-    6.0M    obj/linux-x86-alldefconfig/vmlinux
-    2.6M    obj/linux-x86-allnoconfig/vmlinux
+    $ (cd $TOP; du -hs obj/linux-x86-*/vmlinux)
+    6.5M    obj/linux-x86-alldefconfig/vmlinux
+    2.7M    obj/linux-x86-allnoconfig/vmlinux
+    19M     obj/linux-x86-basic/vmlinux
 
 Adding `make kvmconfig` increases the image size to 5M, so `allnoconfig`
 isn't actually a huge win in terms of size against `alldefconfig`.
