@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/mgalgs
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://mgalgs.github.io
+  * I am mgalgs (https://keybase.io/mgalgs) on keybase.
+  * I have a public key ASCHjcAu_MxkbyeAWBc61Gq8LDaaxRSb6G-74TAQ6YtsoQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120878dc02efccc646f278058173ad46abc2c369ac5149be86fbbe13010e98b6ca10a",
+      "host": "keybase.io",
+      "kid": "0120878dc02efccc646f278058173ad46abc2c369ac5149be86fbbe13010e98b6ca10a",
+      "uid": "879fdc772df761ea989b9e436984d319",
+      "username": "mgalgs"
+    },
+    "merkle_root": {
+      "ctime": 1508173436,
+      "hash": "c33f3af6bef91852f9a53a1180b1ed97b5dfbe80afee535c92402065314c1446e6c90d345fa57f948aa2c3670ef85f4adacb1e3a4cb24a295b9fa57f0b57b69f",
+      "hash_meta": "f48c96c9234bda83130e6f15dd1d1ed620e54842331bc252b48c5fb83ba37a6e",
+      "seqno": 1585739
+    },
+    "service": {
+      "hostname": "mgalgs.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.34"
+  },
+  "ctime": 1508173448,
+  "expire_in": 504576000,
+  "prev": "5bcb742ed5a1a36821888e4bc4b28f453c1f3b7d1c88386794c0d764e42024f5",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgh43ALvzMZG8ngFgXOtRqvCw2msUUm+hvu+EwEOmLbKEKp3BheWxvYWTFA0Z7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwODc4ZGMwMmVmY2NjNjQ2ZjI3ODA1ODE3M2FkNDZhYmMyYzM2OWFjNTE0OWJlODZmYmJlMTMwMTBlOThiNmNhMTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwODc4ZGMwMmVmY2NjNjQ2ZjI3ODA1ODE3M2FkNDZhYmMyYzM2OWFjNTE0OWJlODZmYmJlMTMwMTBlOThiNmNhMTBhIiwidWlkIjoiODc5ZmRjNzcyZGY3NjFlYTk4OWI5ZTQzNjk4NGQzMTkiLCJ1c2VybmFtZSI6Im1nYWxncyJ9LCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTUwODE3MzQzNiwiaGFzaCI6ImMzM2YzYWY2YmVmOTE4NTJmOWE1M2ExMTgwYjFlZDk3YjVkZmJlODBhZmVlNTM1YzkyNDAyMDY1MzE0YzE0NDZlNmM5MGQzNDVmYTU3Zjk0OGFhMmMzNjcwZWY4NWY0YWRhY2IxZTNhNGNiMjRhMjk1YjlmYTU3ZjBiNTdiNjlmIiwiaGFzaF9tZXRhIjoiZjQ4Yzk2YzkyMzRiZGE4MzEzMGU2ZjE1ZGQxZDFlZDYyMGU1NDg0MjMzMWJjMjUyYjQ4YzVmYjgzYmEzN2E2ZSIsInNlcW5vIjoxNTg1NzM5fSwic2VydmljZSI6eyJob3N0bmFtZSI6Im1nYWxncy5naXRodWIuaW8iLCJwcm90b2NvbCI6Imh0dHBzOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4zNCJ9LCJjdGltZSI6MTUwODE3MzQ0OCwiZXhwaXJlX2luIjo1MDQ1NzYwMDAsInByZXYiOiI1YmNiNzQyZWQ1YTFhMzY4MjE4ODhlNGJjNGIyOGY0NTNjMWYzYjdkMWM4ODM4Njc5NGMwZDc2NGU0MjAyNGY1Iiwic2Vxbm8iOjgsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RAyNMZO8458cWLJT96M6iFRSgmE2jO4EkwWRRKMk989dTANZBta/Wka2himo099ZTIZMEETYWyLA9T9rdWf5QoCKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIB/hw3NmUm08YdNyihbRoYN70s1xtcH02swy2EJbLhF4o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mgalgs
+
+==================================================================
