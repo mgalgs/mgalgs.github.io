@@ -2,6 +2,9 @@
 layout: post
 title: How to Build A Custom Linux Kernel For Qemu (2015 Edition)
 tags: [linux, qemu, kernel]
+redirect_from:
+  - /2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015
+  - /qemu-2015
 ---
 
 This is an updated version of my
