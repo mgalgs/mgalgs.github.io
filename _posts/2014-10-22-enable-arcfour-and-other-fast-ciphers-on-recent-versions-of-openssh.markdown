@@ -32,13 +32,13 @@ Check the man page on your system for the default value and just add
 querying your system with `ssh -Q`.  Pipe that sucker into `paste` and you
 have yourself a line suitable for pasting into `/etc/ssh/sshd_config`:
 
-    $ ssh -Q cipher localhost | paste -d , -s
+    $ ssh -Q cipher localhost | paste -d , -s -
     3des-cbc,blowfish-cbc,cast128-cbc,arcfour,arcfour128,arcfour256,aes128-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com
 
 Here's what I ended up adding to my `/etc/ssh/sshd_config`:
 
     # enable all ciphers!
-    # obtained with ssh -Q cipher localhost | paste -d , -s
+    # obtained with ssh -Q cipher localhost | paste -d , -s -
     Ciphers 3des-cbc,blowfish-cbc,cast128-cbc,arcfour,arcfour128,arcfour256,aes128-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com
 
 Remember, **only do this if you don't care about security** (i.e. you never
