@@ -25,12 +25,18 @@ probably run it just fine on their $5/month plan but I didn't test that.
 Click through the DigitalOcean Droplet creation screen, picking CoreOS
 (from the "Container Distributions" tab) and the $10/month Droplet size.
 
+You should be able to ssh in to your new machine with:
+
+```
+ssh core@<droplet-ip>
+```
+
 ## Installing and Configuring OpenVPN
 
-Once you have shell access on your Container Linux instance (login is
-`core@<droplet-ip>`) you can configure the OpenVPN container.  We're using
-the [`kylemanna/openvpn`](https://hub.docker.com/r/kylemanna/openvpn/)
-image and will follow the Quick Start instructions there.
+Once you have shell access on your Container Linux instance you can
+configure the OpenVPN container.  We're using the
+[`kylemanna/openvpn`](https://hub.docker.com/r/kylemanna/openvpn/) image
+and will follow the Quick Start instructions there.
 
 First, pick a name for the Docker Volume that will provide persistence for
 OpenVPN and store it in an environment variable:
