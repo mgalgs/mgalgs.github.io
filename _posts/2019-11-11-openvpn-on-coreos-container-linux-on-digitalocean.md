@@ -27,8 +27,8 @@ Click through the DigitalOcean Droplet creation screen, picking CoreOS
 
 ## Installing and Configuring OpenVPN
 
-Now that we have shell access to our Container Linux instance (login is
-`core@<droplet-ip>`) we can configure the OpenVPN container.  We're using
+Once you have shell access on your Container Linux instance (login is
+`core@<droplet-ip>`) you can configure the OpenVPN container.  We're using
 the [`kylemanna/openvpn`](https://hub.docker.com/r/kylemanna/openvpn/)
 image and will follow the Quick Start instructions there.
 
