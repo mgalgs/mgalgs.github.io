@@ -15,7 +15,7 @@ hosting providers on the market today you can host your own OpenVPN server
 on the cheap with minimal headache.
 
 This post will document the full installation and configuration of [OpenVPN
-under Docker](https://hub.docker.com/r/kylemanna/openvpn/) on a [CoreOS
+under Docker](https://hub.docker.com/r/kylemanna/openvpn/) on [CoreOS
 Container Linux](https://coreos.com/os/docs/latest/) on a
 [DigitalOcean](https://www.digitalocean.com/) $10/month droplet.  You could
 probably run it just fine on their $5/month plan but I didn't test that.
