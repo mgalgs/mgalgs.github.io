@@ -11,10 +11,10 @@ That tutorial is still useful, but as build requirements have evolved over
 the years it turned into missing-package-whack-a-mole, with each distro
 requiring different packages to get things building.
 
-By using a `docker`, we can create a fully reproducible and consistent
-build environment that works on any system that runs `docker`. Note that
-we're still going to run our custom kernel using `qemu` directly on the
-host system, we're just using `docker` for the build.
+By using `docker`, we can create a fully reproducible and consistent build
+environment that works the exact same way on any system that runs
+`docker`. Note that we're still going to run our custom kernel using `qemu`
+directly on the host system, we're just using `docker` for the build.
 
 So let's dive in!
 
