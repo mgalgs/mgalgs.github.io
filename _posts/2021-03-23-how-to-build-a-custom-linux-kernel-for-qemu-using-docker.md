@@ -78,7 +78,7 @@ minimal filesystem hierarchy and package it up in an
 
 Let's go configure `busybox` now.
 
-First we enter our build environment:
+First we enter our build container:
 
     $ docker run -ti -v $TOP:/teeny teeny-linux-builder
 
@@ -385,7 +385,7 @@ In order to keep things truly tiny, we'll skip `make kvmconfig`. Build it:
 
     # make O=../obj/linux-x86-allnoconfig -j$(nproc)
 
-and exit the build environment:
+and exit the build container:
 
     # exit
 
