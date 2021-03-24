@@ -13,7 +13,6 @@ redirect_from:
   <span class="label warning">Heads up</span>
   Please see my updated version of this tutorial: <a href="{% post_url 2021-03-23-how-to-build-a-custom-linux-kernel-for-qemu-using-docker %}">
   How To Build A Custom Linux Kernel For Qemu Using Docker</a>.
-  <br>
   The instructions in this post should still work for the most part but if
   you run into build errors you might want to try the Docker based
   build environment as explained in the updated tutorial.
