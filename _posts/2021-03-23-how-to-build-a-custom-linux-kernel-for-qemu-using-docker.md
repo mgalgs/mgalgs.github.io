@@ -14,8 +14,8 @@ requiring different packages to get things building.
 By using `docker`, we can create a fully reproducible and consistent build
 environment that works the exact same way on any system that runs
 `docker`. I've tested these instructions on Debian, Arch, Ubuntu, and Mac
-OSX. If you're using OSX just make sure your building on a case sensitive
-filesystem.
+OSX. If you're using OSX just make sure to put your workspace on a case
+sensitive filesystem.
 
 Note that we're still going to run our custom kernel using `qemu` directly
 on the host system, we're just using `docker` for the build.
