@@ -2,6 +2,9 @@
 layout: post
 title: How To Build A Custom Linux Kernel For Qemu Using Docker
 tags: [linux, qemu, kernel, docker]
+redirect_from:
+  - /2021/03/23/how-to-build-a-custom-linux-kernel-for-qemu-using-docker
+  - /qemu-2021
 ---
 
 This is an updated version of my
