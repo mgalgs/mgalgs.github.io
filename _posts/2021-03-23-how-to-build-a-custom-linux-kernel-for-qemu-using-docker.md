@@ -14,8 +14,8 @@ That tutorial is still useful, but as build requirements have evolved over
 the years it turned into missing-package-whack-a-mole, with each distro
 requiring different packages to get things building.
 
-By using `docker`, we can create a fully reproducible and consistent build
-environment that works the exact same way on any system that runs
+By using `docker`, we can create a fully reproducible, portable, consistent
+build environment that works the exact same way on any system that runs
 `docker`. I've tested these instructions on Debian, Arch, Ubuntu, and Mac
 OSX. If you're using OSX just make sure to put your workspace on a case
 sensitive filesystem.
