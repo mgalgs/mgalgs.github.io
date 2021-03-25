@@ -15,7 +15,8 @@ redirect_from:
   How To Build A Custom Linux Kernel For Qemu Using Docker</a> (2021).
   The instructions in this post should still work for the most part but if
   you run into build errors you might want to try the Docker based
-  build environment as explained in the updated tutorial.
+  build environment as explained in the updated tutorial (which should work
+  on any system with Docker installed, including OSX).
 </p>
 
 This is an updated version of my

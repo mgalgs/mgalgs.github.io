@@ -13,8 +13,11 @@ requiring different packages to get things building.
 
 By using `docker`, we can create a fully reproducible and consistent build
 environment that works the exact same way on any system that runs
-`docker`. Note that we're still going to run our custom kernel using `qemu`
-directly on the host system, we're just using `docker` for the build.
+`docker`. I've tested these instructions on Debian, Arch, Ubuntu, and Mac
+OSX.
+
+Note that we're still going to run our custom kernel using `qemu` directly
+on the host system, we're just using `docker` for the build.
 
 So let's dive in!
 
@@ -60,7 +63,7 @@ RUN apt-get install -y \
         vim-tiny
 ```
 
-And build the `docker` image:
+And build the `docker` image (add `sudo` if necessary on your system):
 
     $ docker build . -t teeny-linux-builder
 
@@ -191,7 +194,8 @@ The kernel is now configured and ready to build.  Go ahead and build it:
 
     # make O=../obj/linux-x86-basic -j$(nproc)
 
-Your freshly built kernel image is located `$TOP/obj/linux-x86-basic/arch/x86_64/boot/bzImage`
+Your freshly built kernel image is located at
+`$TOP/obj/linux-x86-basic/arch/x86_64/boot/bzImage`
 
 Now that we have a kernel and a userland, we're ready to boot!
 
