@@ -1,6 +1,6 @@
 highlighter: rouge
 safe: Yes
-exclude: ["newpost.sh", "publish_draft.sh"]
+exclude: ["newpost.sh", "publish_draft.sh", "README.md"]
 markdown: kramdown
 plugins:
   - jekyll-redirect-from
