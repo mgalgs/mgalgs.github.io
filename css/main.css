@@ -8,8 +8,13 @@
     margin-top: 85px;
 }
 #id_brand {
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Droid Sans Mono', sans-serif;
+}
+@media (min-width: 992px) {
+    #id_brand {
+        font-size: 30px;
+    }
 }
 #id_brand span:nth-child(1) {
     color: #009900;
