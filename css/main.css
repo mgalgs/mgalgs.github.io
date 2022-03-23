@@ -59,6 +59,11 @@ ul.posts li.grid {
 ul.posts li.grid code {
     padding: 3px;
 }
+@media (max-width: 767px) {
+    ul.posts li.grid {
+        grid-template-columns: 1fr;
+    }
+}
 code.tags-list {
     background: none;
 }
