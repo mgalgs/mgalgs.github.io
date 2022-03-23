@@ -1,3 +1,9 @@
+/* add one more breakpoint to pico's .container */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1360px;
+    }
+}
 #id_navContainer {
     position: fixed;
     top: 0;
