@@ -1,64 +1,59 @@
-html, body {
-    background-color: #555;
+#id_navContainer {
+    position: fixed;
+    top: 0;
+    /* background-color: #11191f; */
+    background-color: black;
 }
-#main-content p {
+#id_mainContainer {
+    margin-top: 85px;
+}
+#id_brand {
+    font-size: 30px;
+    font-family: 'Droid Sans Mono', sans-serif;
+}
+#id_brand span:nth-child(1) {
+    color: #009900;
+}
+#id_brand span:nth-child(2) {
+    color: yellow;
+}
+#id_brand span:nth-child(3) {
+    color: #009900;
+}
+#id_brand span:nth-child(4) {
+    color: #bb0000;
+}
+.toplevel-container {
+    padding-top: 0;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+@media (min-width: 992px) {
+  main .grid {
+    grid-column-gap: 70px;
+    grid-template-columns: auto 30%;
+  }
+}
+#id_sidebar article {
+    padding: 40px 40px 10px;
+}
+#id_sidebar article ul li {
     font-size: 16px;
-    line-height: 24px;
 }
-code {
-    font-size: 14px;
-    background: #f0f0f0;
+#id_mainContent {
+    padding-top: 20px;
 }
-small {
-    font-size: 12px;
+ul.unstyled li {
+    list-style: none;
 }
-footer {
-    background: #eee;
-    margin: 17px;
-    padding: 17px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+ul.posts li.grid {
+    grid-template-columns: 150px auto;
+    grid-column-gap: 12px;
+    margin: 0 0 8px;
 }
-.brand {
-    font-family: 'Droid Sans Mono', sans-serif;
+ul.posts li.grid code {
+    padding: 3px;
 }
-.nice-mono {
-    font-family: 'Droid Sans Mono', sans-serif;
-}
-.cursor {
-    color: black;
-}
-.cursor .inverted {
-    color: white;
-}
-.clipboard {
-    display:none;
-}
-ul.posts li {
-    padding: 2px 0px;
-}
-span.tags-list {
-    font-family: 'Droid Sans Mono', sans-serif;
-    font-size: 11px;
-}
-pre {
-    width: 100%;
-    overflow: auto;
-}
-code {
-    padding: 0;
-}
-ul.gray-list li {
-    display: block;
-    background: #E5E5E5;
-    padding: 5px;
-    margin-bottom: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-ul.gray-list li:hover a {
-    background: #EEE;
-    text-decoration: none;
+code.tags-list {
+    background: none;
 }

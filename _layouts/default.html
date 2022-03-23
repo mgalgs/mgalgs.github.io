@@ -1,72 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8">
-    <title>Mitchel Humpherys :: {{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Professional blog of a feaster software engineer">
     <meta name="author" content="Mitchel Humpherys">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/syntax.css" rel="stylesheet">
-
-    <style type="text/css">
-     /* Override some defaults */
-     body {
-         padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-     }
-     .container > footer p {
-         text-align: center; /* center align it with the container */
-     }
-
-     /* The white background content wrapper */
-     .content {
-         background-color: #fff;
-         padding: 20px;
-         margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-         -webkit-border-radius: 0 0 6px 6px;
-         -moz-border-radius: 0 0 6px 6px;
-         border-radius: 0 0 6px 6px;
-         -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-         -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-         box-shadow: 0 1px 2px rgba(0,0,0,.15);
-     }
-
-     /* Page header tweaks */
-     .page-header {
-         background-color: #f5f5f5;
-         padding: 20px 20px 10px;
-         margin: -20px -20px 20px;
-     }
-
-     /* Give a quick and non-cross-browser friendly divider */
-     .content .span4 {
-         margin-left: 0;
-         padding-left: 19px;
-         border-left: 1px solid #eee;
-     }
-
-     .topbar .btn {
-         border: 0;
-     }
-
-    </style>
+    <link rel="stylesheet" href="/css/pico.min.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Mitchel Humpherys :: {{ page.title }}</title>
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/images/favicon.ico">
-    <!-- <link rel="apple-touch-icon" href="images/apple-touch-icon.png"> -->
-    <!-- <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"> -->
-    <!-- <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"> -->
-
-    <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
 
     <!-- fonts -->
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
@@ -91,88 +36,75 @@
   </head>
 
   <body>
+    <div class="container-fluid" id="id_navContainer">
+      <nav>
+        <ul>
+          <li>
+            <a id="id_brand" href="/">
+              <span>mgalgs</span><span>@</span><span>the-internet</span><span>#</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <main class="container toplevel-container" id="id_mainContainer">
+      <!-- github ribbon -->
+      <!-- <a href="http://github.com/mgalgs"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a> -->
+      <!-- <a href="https://github.com/mgalgs"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a> -->
+      <a href="https://github.com/mgalgs" class="github-corner" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: fixed; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
-    <!-- github ribbon -->
-    <!-- <a href="http://github.com/mgalgs"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a> -->
-    <a href="https://github.com/mgalgs"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+      <div class="grid">
+        <div id="id_mainContent">
+          {{ page.before_main }}
+          {{ content }}
+        </div>
 
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <div class="row">
-            <div class="span5">
-              <a class="brand" href="/"><span style="color: #009900;">mgalgs</span><span style="color: yellow;">@</span><span style="color: #009900;">the-internet</span> <span style="color: #bb0000;">#</span> </a>
-            </div>
-            <!-- <ul class="nav"> -->
-            <!--   <li class="active"><a href="/">Home</a></li> -->
-            <!--   <li><a href="#about">About</a></li> -->
-            <!--   <li><a href="#contact">Projects</a></li> -->
-            <!-- </ul> -->
-            <div class="span7 offset4" style="text-align:right;height:40px;">
-              <a class="subbrand nice-mono" style="font-size:14px;padding-bottom:0px;" href="/">Mitchel Humpherys</a>
-              <br/>
-              <a class="subbrand nice-mono" style="font-size:9px;" href="https://twitter.com/mgalgs">@mgalgs</a>
-            </div>
-          </div> <!-- row -->
-        </div> <!-- container -->
-      </div>   <!-- fill -->
-    </div>     <!-- topbar -->
-
-    <div class="container">
-
-      <div class="content">
-
-        {{ page.before_main }}
-
-        <div class="row">
-          <div class="span10">
-            <div id="main-content">
-              {{ content }}
-            </div>
-          </div>              <!-- span9 -->
-          <!-- <div class="span1"><\!-- Nothing to see here. Move along. -\->&nbsp;</div> -->
-          <div class="span5 offset1">
-
+        <div id="id_sidebar">
+          <article>
             <h5>Links</h5>
-            <ul class="unstyled gray-list">
-              <li><a href="/static/mah_resume.pdf">Resum&eacute;</a></li>
-              <li><a href="https://github.com/mgalgs">GitHub Profile</a></li>
-              <li><a href="https://stackoverflow.com/users/209050/mgalgs">Stack Overflow Profile</a></li>
-              <li><a href="https://twitter.com/mgalgs">Twitter</a></li>
-              <li><a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xBEEA245D4E939A9A">PGP Public Key</a></li>
+            <ul>
+              <li><a class="secondary" href="/static/mah_resume.pdf">Resum&eacute;</a></li>
+              <li><a class="secondary" href="https://github.com/mgalgs">GitHub Profile</a></li>
+              <li><a class="secondary" href="https://stackoverflow.com/users/209050/mgalgs">Stack Overflow Profile</a></li>
+              <li><a class="secondary" href="https://twitter.com/mgalgs">Twitter</a></li>
+              <li><a class="secondary" href="https://pgp.mit.edu/pks/lookup?op=get&search=0xBEEA245D4E939A9A">PGP Public Key</a></li>
             </ul>
+          </article>
 
+          <article>
             <h5>Projects</h5>
             <ul class="unstyled gray-list">
               {% for post in site.posts %}
                 {% if post.category == 'projects' %}
                   <li>
-                    <a href="{{ post.url }}">
+                    <a class="secondary" href="{{ post.url }}">
                       {{ post.title }}
                       {% unless post.tags == empty %}
-                        <span class="tags-list">
+                        <code class="tags-list">
                           [{{ post.tags | join: ", " }}]
-                        </span>
+                        </code>
                       {% endunless %}
                     </a>
                   </li>
                 {% endif %}
               {% endfor %}
             </ul>
+          </article>
 
+          <article>
             <h5>Work</h5>
             <ul class="unstyled gray-list">
               <li>
-                <strong>Co-Founder & CEO</strong> of <a href="https://www.directangular.com">Directangular, LLC</a>.
+                <strong>Co-Founder & CEO</strong> of <a class="secondary" href="https://www.directangular.com">Directangular, LLC</a>.
               </li>
               <li>
                 <strong>Previously</strong>:
 
                 <small>
                   Linux Kernel development
-                  for <a href="https://www.quicinc.com/">QuIC</a>. Some of
+                  for <a class="secondary" href="https://www.quicinc.com/">QuIC</a>. Some of
                   my work (a little stale) is available on the Code Aurora
-                  Forum, <a href="https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.18/log/?h=msm-3.18&qt=author&q=mitchelh">here</a>, <a href="https://www.codeaurora.org/cgit/quic/la/platform/vendor/qcom-opensource/kernel/kernel-tests/log/?qt=author&q=mitchelh&h=master">here</a>, <a href="https://www.codeaurora.org/cgit/quic/la/platform/vendor/qcom-opensource/tools/log/?qt=author&q=mitchelh&h=master">here</a>, and <a href="https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.10/log/?h=msm-3.10&qt=author&q=mitchelh">here</a>.
+                  Forum, <a class="secondary" href="https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.18/log/?h=msm-3.18&qt=author&q=mitchelh">here</a>, <a class="secondary" href="https://www.codeaurora.org/cgit/quic/la/platform/vendor/qcom-opensource/kernel/kernel-tests/log/?qt=author&q=mitchelh&h=master">here</a>, <a class="secondary" href="https://www.codeaurora.org/cgit/quic/la/platform/vendor/qcom-opensource/tools/log/?qt=author&q=mitchelh&h=master">here</a>, and <a class="secondary" href="https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.10/log/?h=msm-3.10&qt=author&q=mitchelh">here</a>.
                 </small>
               </li>
               <li>
@@ -181,47 +113,58 @@
                 <small>
                   Creating and contributing to a variety of Open
                   Source projects. See
-                  my <a href="https://github.com/mgalgs">GitHub
+                  my <a class="secondary" href="https://github.com/mgalgs">GitHub
                   profile</a>.
                 </small>
               </li>
             </ul>
+          </article>
 
+          <article>
             <h5>Recent Posts</h5>
-            <p style="position:relative; left:5px;">
-              <a href="/atom.xml"><img src="/static/atom.png" style="position:relative; top:3px; right:3px;">Subscribe with Atom</a>
-            </p>
             <ul class="unstyled gray-list">
               {% for post in site.posts limit:5 %}
                 <li>
-                  <a href="{{ post.url }}">{{ post.title }}</a>
+                  <a class="secondary" href="{{ post.url }}">{{ post.title }}</a>
                 </li>
               {% endfor %}
+              <li>
+                <a class="secondary" href="/all.html">More...</a>
+              </li>
+              <li>
+                <hr>
+                <a class="secondary" href="/atom.xml">
+                  <img src="/static/atom.png">
+                  Subscribe with Atom
+                </a>
+              </li>
             </ul>
-
-          </div>
-        </div> <!-- /row -->
+          </article>
+        </div>
       </div>
+    </main>
 
-      <footer>
-        <p>
-          <a href="/sitemap.xml">Sitemap</a> |
-          <a href="/atom.xml"><img src="/static/atom.png" style="position:relative; top:3px; right:3px;">Atom</a>
-          <br>
-          This site is built on
-          <a href="https://pages.github.com/">GitHub Pages</a>
-          using
-          <a href="https://jekyllrb.com/">Jekyll</a>,
-          <a href="https://github.com/shopify/liquid/wiki/liquid-for-designers">Liquid</a>,
-          <a href="https://daringfireball.net/projects/markdown/">Markdown</a>,
-          <a href="https://www.yaml.org/">YAML</a>,
-          <a href="https://git-scm.com/">Git</a>,
-          and
-          <a href="https://twitter.github.com/bootstrap/">Bootstrap CSS</a>.
-          <br>
-          &copy; Mitchel Humpherys, {{ site.time | date: '%Y' }}
-        </p>
-      </footer>
-    </div> <!-- /container -->
+    <footer class="container-fluid secondary toplevel-container" id="id_mainFooter">
+      <small>
+        <a class="secondary" href="/sitemap.xml">Sitemap</a> |
+        <a class="secondary" href="/atom.xml">
+          <img src="/static/atom.png">
+          Atom
+        </a>
+        <br>
+        This site is built on
+        <a class="secondary" href="https://pages.github.com/">GitHub Pages</a>
+        using
+        <a class="secondary" href="https://jekyllrb.com/">Jekyll</a>,
+        <a class="secondary" href="https://github.com/shopify/liquid/wiki/liquid-for-designers">Liquid</a>,
+        <a class="secondary" href="https://daringfireball.net/projects/markdown/">Markdown</a>,
+        <a class="secondary" href="https://www.yaml.org/">YAML</a>,
+        <a class="secondary" href="https://git-scm.com/">Git</a>,
+        and
+        <a class="secondary" href="https://twitter.github.com/bootstrap/">Bootstrap CSS</a>.
+        <br>
+        &copy; Mitchel Humpherys, {{ site.time | date: '%Y' }}
+      </small>
+    </footer>
   </body>
 </html>
