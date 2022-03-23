@@ -56,6 +56,12 @@
 #id_navContainer:hover .blinking-cursor {
     animation: 2s blink step-end infinite;
 }
+/* don't require hover for mobile */
+@media (max-width: 767px) {
+    #id_navContainer .blinking-cursor {
+        animation: 2s blink step-end infinite;
+    }
+}
 @keyframes "blink" {
     from, to {
         color: transparent;
