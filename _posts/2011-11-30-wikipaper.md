@@ -2,7 +2,7 @@
 layout: post
 title: WikiPaper
 permalink: /projects/wikipaper.html
-category: projects
+category: projects-legacy
 tags: [android]
 ---
 

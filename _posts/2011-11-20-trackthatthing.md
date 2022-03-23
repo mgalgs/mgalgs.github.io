@@ -2,7 +2,7 @@
 layout: post
 title: Track That Thing
 permalink: /projects/trackthatthing.html
-category: projects
+category: projects-legacy
 tags: [android, django]
 ---
 
