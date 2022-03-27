@@ -19,6 +19,13 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 
+    <script>
+     /* Quick and dirty redirect to canonical URL */
+     const allowedHostnames = ["0.0.0.0", "mgalgs.io"];
+     if (allowedHostnames.indexOf(window.location.hostname) < 0)
+         window.location.replace("https://mgalgs.io" + window.location.pathname);
+    </script>
+
     <!-- analytics -->
     <script type="text/javascript">
 
