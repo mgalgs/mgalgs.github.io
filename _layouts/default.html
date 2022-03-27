@@ -21,9 +21,13 @@
 
     <script>
      /* Quick and dirty redirect to canonical URL */
-     const allowedHostnames = ["0.0.0.0", "mgalgs.io"];
-     if (allowedHostnames.indexOf(window.location.hostname) < 0)
-         window.location.replace("https://mgalgs.io" + window.location.pathname);
+     (() => {
+         if (window.location.hostname === "0.0.0.0")
+             return;
+         if (window.location.hostname != "mgalgs.io" ||
+             window.location.protocol != "https:")
+             window.location.replace("https://mgalgs.io" + window.location.pathname);
+     })();
     </script>
 
     <!-- analytics -->
