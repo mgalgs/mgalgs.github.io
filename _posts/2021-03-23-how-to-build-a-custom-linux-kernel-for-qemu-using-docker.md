@@ -68,7 +68,10 @@ RUN apt-get install -y \
 ```
 
 If you're building on a Mac M1 you'll also need to add
-`gcc-x86-64-linux-gnu` (which is a cross-compiler) to the package list.
+`gcc-x86-64-linux-gnu` (which is a cross-compiler) to the package
+list. (Thanks to [commenter Franziska
+Napelt](https://mgalgs.io/2021/03/23/how-to-build-a-custom-linux-kernel-for-qemu-using-docker.html#comment-6199743080)
+for pointing this out!)
 
 And build the `docker` image (add `sudo` if necessary on your system):
 
