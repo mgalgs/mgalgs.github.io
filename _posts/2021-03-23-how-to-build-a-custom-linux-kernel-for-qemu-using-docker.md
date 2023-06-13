@@ -67,6 +67,9 @@ RUN apt-get install -y \
         vim-tiny
 ```
 
+If you're building on a Mac M1 you'll also need to add
+`gcc-x86-64-linux-gnu` (which is a cross-compiler) to the package list.
+
 And build the `docker` image (add `sudo` if necessary on your system):
 
     $ docker build . -t teeny-linux-builder
@@ -94,6 +97,13 @@ and prepare the initial `busybox` configuration:
     # cd /teeny/busybox-1.32.1
     # mkdir -pv ../obj/busybox-x86
     # make O=../obj/busybox-x86 defconfig
+
+If you're using a cross-compiler (if you're on a Mac M1, for example),
+you'll also need to add `ARCH=x86_64
+CROSS_COMPILE=/usr/bin/x86_64-linux-gnu-` to this and all subsequent `make`
+commands below. E.g.:
+
+    # make ARCH=x86_64 CROSS_COMPILE=/usr/bin/x86_64-linux-gnu- O=../obj/busybox-x86 defconfig
 
 (Note: in the `busybox` build system, `O=` means "place build output here".
 This allows you to host multiple different configurations out of the same
