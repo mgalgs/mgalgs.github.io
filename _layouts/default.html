@@ -22,9 +22,10 @@
     <script>
      /* Quick and dirty redirect to canonical URL */
      (() => {
-         if (window.location.hostname === "0.0.0.0")
+         const hostname = window.location.hostname;
+         if (hostname === "0.0.0.0" || hostname === "localhost")
              return;
-         if (window.location.hostname != "mgalgs.io" ||
+         if (hostname != "mgalgs.io" ||
              window.location.protocol != "https:")
              window.location.replace("https://mgalgs.io" + window.location.pathname);
      })();
