@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.7.2'
-# Replace 223 with latest version from https://pages.github.com/versions/
-gem "github-pages", "~> 223", group: :jekyll_plugins
+ruby '3.3.4'
+# Replace 232 with latest version from https://pages.github.com/versions/
+gem "github-pages", "~> 232", group: :jekyll_plugins
