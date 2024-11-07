@@ -27,6 +27,7 @@
     height: 80px;
     /* lifted from inline */
     position: fixed; top: 0; border: 0; right: 0;
+    z-index: 9999; /* Needs to be larger than #id_navContainer from main.css */
 }
 @media (max-width: 991px) {
     .github-corner {

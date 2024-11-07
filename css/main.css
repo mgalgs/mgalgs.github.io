@@ -9,6 +9,7 @@
     top: 0;
     /* background-color: #11191f; */
     background-color: black;
+    z-index: 999;
 }
 #id_mainContainer {
     margin-top: 85px;
