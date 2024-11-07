@@ -60,6 +60,27 @@ automatically)). In general, the variables will be named
 documentation for this feature, only a few obscure mailing list
 references. If you know where the docs are, drop a comment!
 
+<article>
+
+<em>EDIT (2024-11-07):</em>
+<a href="https://stackoverflow.com/questions/16552710/how-do-you-get-the-start-and-end-addresses-of-a-custom-elf-section/16552711?noredirect=1#comment139598351_16552711">
+gebjon on StackOverflow</a>
+has pointed out where this is documented in
+<a href="https://sourceware.org/binutils/docs/ld/Input-Section-Example.html">
+the binutils `ld` docs</a>:
+
+<blockquote>
+If an output section’s name is the same as the input section’s name and
+is representable as a C identifier, then the linker will automatically
+see PROVIDE two symbols: __start_SECNAME and __stop_SECNAME, where
+SECNAME is the name of the section. These indicate the start address and
+end address of the output section respectively. Note: most section names
+are not representable as C identifiers because they contain a ‘.’
+character.
+</blockquote>
+
+</article>
+
 In the end, the main code for your program might look something like
 this:
 
