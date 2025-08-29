@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pass & Move — 4-Cone Square (U14)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0b1220;
+      --bg2: #0f1b2e;
+      --panel: rgba(255,255,255,0.06);
+      --panel-border: rgba(255,255,255,0.12);
+      --text: #ecf1ff;
+      --muted: #b9c4e0;
+      --good: #2ecc71;
+      --bad: #ff5a5f;
+      --cone: #ff9f1c;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      background: radial-gradient(1000px 600px at 20% 0%, #142443 0%, var(--bg1) 50%),
+                  radial-gradient(1000px 600px at 80% 20%, #1f3767 0%, var(--bg2) 50%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+    .wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px 24px; }
+    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .title { font-weight: 800; letter-spacing: 0.3px; font-size: clamp(20px, 3vw, 28px); }
+    .subtitle { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    .panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06); }
+
+    /* Controls layout */
+    .controls { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 14px; }
+    @media (min-width: 980px) { .controls { grid-template-columns: 1.1fr 1.1fr 1.1fr 1.1fr 1fr; align-items: center; } }
+    .control { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 10px; border-radius: 12px; }
+    .control label { font-weight: 600; font-size: 14px; color: var(--muted); }
+
+    .btn { border: none; border-radius: 12px; padding: 10px 14px; background: linear-gradient(180deg, #5bb1ff, #3c8df0); color: #071428; font-weight: 800; cursor: pointer; box-shadow: 0 8px 18px rgba(77,163,255,0.35); }
+
+    .toggle { display: inline-flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid var(--panel-border); border-radius: 12px; padding: 2px; }
+    .toggle input { display: none; }
+    .toggle label { padding: 6px 12px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 13px; color: var(--muted); }
+    .toggle input:checked + label { background: rgba(77,163,255,0.18); color: var(--text); }
+
+    .range { display: flex; flex-direction: row; align-items: center; gap: 10px; width: 100%; }
+    .range input[type="range"] { flex: 1; -webkit-appearance: none; appearance: none; height: 10px; background: rgba(255,255,255,0.1); border-radius: 999px; border: 1px solid var(--panel-border); }
+    .range input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 2px solid #5bb1ff; cursor: pointer; }
+    .range input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 2px solid #5bb1ff; cursor: pointer; }
+
+    .canvas-wrap { margin-top: 16px; padding: 12px; }
+    .legend { display: flex; gap: 14px; align-items: center; margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+    .key { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+    canvas { width: 100%; height: 68vh; min-height: 420px; max-height: 760px; display: block; border-radius: 18px; background: radial-gradient(1200px 800px at 70% -30%, rgba(255,255,255,0.05), rgba(255,255,255,0) 60%), radial-gradient(1200px 800px at 10% 130%, rgba(255,255,255,0.05), rgba(255,255,255,0) 60%), linear-gradient(180deg, #0a1b30, #071427); border: 1px solid var(--panel-border); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.35); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="title">Pass & Move — 4‑Cone Square (Overhead Animation)</div>
+        <div class="subtitle">Slower motion • lanes always on • direction fixed</div>
+      </div>
+      <button id="playPause" class="btn" aria-label="Start or Pause">▶ Start</button>
+    </header>
+
+    <section id="controls" class="panel controls" aria-label="Controls">
+      <div class="control">
+        <label>Direction</label>
+        <div class="toggle" role="radiogroup" aria-label="Direction">
+          <input type="radio" name="dir" id="cw" checked>
+          <label for="cw">Clockwise ↻</label>
+          <input type="radio" name="dir" id="ccw">
+          <label for="ccw">Counterclockwise ↺</label>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Player Distance from Defenders</label>
+        <div class="range">
+          <input id="standoff" type="range" min="0" max="0.6" step="0.01" value="0.25"/>
+          <div id="standoffLabel">25% of cone distance</div>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Run Speed</label>
+        <div class="range">
+          <input id="runSpeed" type="range" min="0.5" max="1.5" step="0.01" value="0.80"/>
+          <div id="runSpeedLabel">0.80×</div>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Move Delay</label>
+        <div class="range">
+          <input id="moveDelay" type="range" min="0" max="800" step="10" value="250"/>
+          <div id="moveDelayLabel">250 ms</div>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Danger Radius</label>
+        <div class="range">
+          <input id="radius" type="range" min="0.12" max="0.35" step="0.01" value="0.22"/>
+          <div id="radiusLabel">22% of cone distance</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="canvas-wrap panel">
+      <canvas id="field"></canvas>
+      <div class="legend">
+        <span class="key"><span class="dot" style="background: var(--good)"></span>Open lane</span>
+        <span class="key"><span class="dot" style="background: var(--bad)"></span>Blocked</span>
+        <span class="key"><span class="dot" style="background: var(--cone)"></span>Defender</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  const playPauseBtn = document.getElementById('playPause');
+  const dirCW = document.getElementById('cw');
+  const dirCCW = document.getElementById('ccw');
+  const standoff = document.getElementById('standoff');
+  const standoffLabel = document.getElementById('standoffLabel');
+  const runSpeed = document.getElementById('runSpeed');
+  const runSpeedLabel = document.getElementById('runSpeedLabel');
+  const moveDelay = document.getElementById('moveDelay');
+  const moveDelayLabel = document.getElementById('moveDelayLabel');
+  const radiusInput = document.getElementById('radius');
+  const radiusLabel = document.getElementById('radiusLabel');
+
+  // HiDPI / layout
+  let DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+  let W = 0, H = 0, CX = 0, CY = 0;
+
+  // Fixed inner (cones) square side length to avoid overflow
+  const size = 240; // px
+  let standoffFactor = +standoff.value;      // distance from cones as fraction of size
+  let zoneFactor = +radiusInput.value;       // defender radius as fraction of size
+  let runSpeedMult = +runSpeed.value;        // multiplier on run duration (higher = faster)
+  let moveDelayMs  = +moveDelay.value;       // delay before runner starts after kick
+
+  // Slower base durations
+  const BASE_PASS_DURATION = 1400;  // ms (ball flight time baseline) — slower
+  const BASE_RUN_DURATION  = 2600;  // ms (player run baseline) — slower
+
+  // Geometry
+  const coneCorners   = [ {},{},{},{} ]; // inner square (defenders)
+  const playerCorners = [ {},{},{},{} ]; // outer square (attackers move)
+
+  // Players
+  const players = [
+    { id:'P1', color:'#5bb1ff', corner:0, pos:{} },
+    { id:'P2', color:'#7ef2a0', corner:1, pos:{} },
+    { id:'P3', color:'#ff89c0', corner:2, pos:{} }
+  ];
+  let ballHolderIndex = 0;
+  let ball = { x:0, y:0 };
+  let phase = null; // current animation step
+
+  // Easing functions for more realistic motion
+  const easeOutCubic   = t => 1 - Math.pow(1 - t, 3);           // ball
+  const easeInOutCubic = t => (t<0.5? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2); // run
+
+  function setCanvasSize(){
+    const r = canvas.getBoundingClientRect();
+    W = Math.floor(r.width * DPR);
+    H = Math.floor(r.height * DPR);
+    canvas.width = W; canvas.height = H;
+    CX = W/2; CY = H/2;
+  }
+
+  function computeCorners(){
+    const innerHalf   = (size * DPR) / 2;            // cones
+    const standoffPx  = size * standoffFactor * DPR; // attacker distance from cones
+    const outerHalf   = innerHalf + standoffPx;      // players
+
+    // Cones (inner square)
+    coneCorners[0] = { x: CX - innerHalf, y: CY - innerHalf };
+    coneCorners[1] = { x: CX + innerHalf, y: CY - innerHalf };
+    coneCorners[2] = { x: CX + innerHalf, y: CY + innerHalf };
+    coneCorners[3] = { x: CX - innerHalf, y: CY + innerHalf };
+
+    // Players (outer square)
+    playerCorners[0] = { x: CX - outerHalf, y: CY - outerHalf };
+    playerCorners[1] = { x: CX + outerHalf, y: CY - outerHalf };
+    playerCorners[2] = { x: CX + outerHalf, y: CY + outerHalf };
+    playerCorners[3] = { x: CX - outerHalf, y: CY + outerHalf };
+  }
+
+  function snapPlayers(){
+    players.forEach(p => { const c = playerCorners[p.corner]; p.pos = { x:c.x, y:c.y }; });
+    ball = { x: players[ballHolderIndex].pos.x, y: players[ballHolderIndex].pos.y };
+  }
+
+  function openCorner(){
+    const occ = new Set(players.map(p => p.corner));
+    for (let i=0;i<4;i++) if (!occ.has(i)) return i; return 0;
+  }
+
+  function startStep(now){
+    const from  = players[ballHolderIndex];
+    const fromC = from.corner;
+    const dir   = document.getElementById('ccw').checked ? -1 : 1; // robust check
+    const toC   = (fromC + (dir>0?1:3)) % 4;
+    const toIdx = players.findIndex(p => p.corner === toC);
+    if (toIdx === -1) { isRunning = false; updateBtn(); return; }
+    const runnerIdx = ballHolderIndex;
+    const runTo     = openCorner();
+
+    phase = {
+      fromIdx: ballHolderIndex,
+      toIdx,
+      runnerIdx,
+      startTime: now,
+      passFrom: { ...playerCorners[fromC] },
+      passTo:   { ...playerCorners[toC]   },
+      runFrom:  { ...playerCorners[fromC] },
+      runTo:    { ...playerCorners[runTo] },
+      runToCorner: runTo
+    };
+  }
+
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
+
+  function update(now){
+    if (!phase) return;
+
+    // Ball timing (ease-out)
+    const tPassRaw = clamp((now - phase.startTime) / BASE_PASS_DURATION, 0, 1);
+    const tPass    = easeOutCubic(tPassRaw);
+    ball.x = lerp(phase.passFrom.x, phase.passTo.x, tPass);
+    ball.y = lerp(phase.passFrom.y, phase.passTo.y, tPass);
+
+    // Runner timing (delayed start), duration scaled by run speed
+    const runDur   = BASE_RUN_DURATION / runSpeedMult; // higher slider -> faster
+    const runClock = now - (phase.startTime + moveDelayMs);
+    const tRunRaw  = clamp(runClock / runDur, 0, 1);
+    const tRun     = easeInOutCubic(tRunRaw);
+
+    const runner = players[phase.runnerIdx];
+    runner.pos.x = lerp(phase.runFrom.x, phase.runTo.x, tRun);
+    runner.pos.y = lerp(phase.runFrom.y, phase.runTo.y, tRun);
+
+    if (tPassRaw === 1 && tRunRaw === 1) {
+      players[phase.runnerIdx].corner = phase.runToCorner;
+      players[phase.runnerIdx].pos    = { ...phase.runTo };
+      ballHolderIndex = phase.toIdx;
+      ball = { ...players[ballHolderIndex].pos };
+      phase = null;
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    drawSquares();
+
+    const R = size * zoneFactor * DPR;
+    for (let i=0;i<4;i++) drawDefender(coneCorners[i].x, coneCorners[i].y, R);
+
+    // Passing lanes always on
+    drawLanes(R);
+
+    players.forEach(p => drawPlayer(p.pos.x, p.pos.y, p.color, p.id));
+    drawBall(ball.x, ball.y);
+  }
+
+  function drawSquares(){
+    const innerHalf  = (size * DPR) / 2;
+    const standoffPx = size * standoffFactor * DPR;
+    const outerHalf  = innerHalf + standoffPx;
+
+    ctx.save();
+    ctx.translate(CX, CY);
+    // Outer (players)
+    ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+    ctx.lineWidth = 2 * DPR;
+    ctx.strokeRect(-outerHalf, -outerHalf, outerHalf*2, outerHalf*2);
+    // Inner (cones)
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = 2 * DPR;
+    ctx.strokeRect(-innerHalf, -innerHalf, innerHalf*2, innerHalf*2);
+    ctx.restore();
+  }
+
+  function drawDefender(x, y, R){
+    const g = ctx.createRadialGradient(x,y, R*0.1, x,y,R);
+    g.addColorStop(0, 'rgba(255,159,28,0.18)');
+    g.addColorStop(1, 'rgba(255,159,28,0.05)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(x,y,R,0,2*Math.PI); ctx.fill();
+
+    ctx.setLineDash([8*DPR, 7*DPR]);
+    ctx.strokeStyle = 'rgba(255,159,28,0.45)';
+    ctx.lineWidth = 3 * DPR;
+    ctx.beginPath(); ctx.arc(x,y,R,0,2*Math.PI); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = '#ffb24d';
+    ctx.beginPath(); ctx.arc(x, y, 14*DPR, 0, 2*Math.PI); ctx.fill();
+    ctx.lineWidth = 2*DPR; ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.stroke();
+  }
+
+  function drawPlayer(x, y, color, label){
+    ctx.beginPath(); ctx.arc(x, y, 26*DPR, 0, 2*Math.PI);
+    ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fill();
+
+    const grd = ctx.createRadialGradient(x-5*DPR, y-5*DPR, 2*DPR, x, y, 22*DPR);
+    grd.addColorStop(0, '#ffffff'); grd.addColorStop(1, color);
+    ctx.beginPath(); ctx.arc(x, y, 20*DPR, 0, 2*Math.PI);
+    ctx.fillStyle = grd; ctx.fill();
+    ctx.lineWidth = 3*DPR; ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.stroke();
+
+    ctx.font = `${14*DPR}px Inter, system-ui`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.fillText(label, x, y + 22*DPR);
+  }
+
+  function drawBall(x, y){
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowBlur = 10*DPR; ctx.shadowOffsetY = 3*DPR;
+    ctx.beginPath(); ctx.arc(x, y, 10*DPR, 0, 2*Math.PI);
+    ctx.fillStyle = '#ffffff'; ctx.fill();
+    ctx.lineWidth = 3*DPR; ctx.strokeStyle = 'rgba(0,0,0,0.5)'; ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawLanes(R){
+    const pairs = [[0,1],[1,2],[0,2]];
+    for (const [i,j] of pairs){
+      const a = players[i].pos, b = players[j].pos;
+      let blocked = false;
+      for (let k=0;k<4;k++) if (segmentIntersectsCircle(a,b,coneCorners[k],R)) { blocked = true; break; }
+      ctx.save();
+      ctx.lineWidth = 6 * DPR; // thicker lines
+      ctx.strokeStyle = blocked ? getCSS('--bad') : getCSS('--good');
+      ctx.globalAlpha = 0.95;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      ctx.beginPath(); ctx.arc(a.x, a.y, 5*DPR, 0, 2*Math.PI); ctx.fillStyle = 'rgba(255,255,255,0.85)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(b.x, b.y, 5*DPR, 0, 2*Math.PI); ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function segmentIntersectsCircle(p1, p2, c, r){
+    const vx = p2.x - p1.x, vy = p2.y - p1.y;
+    const wx = c.x - p1.x, wy = c.y - p1.y;
+    const len2 = vx*vx + vy*vy;
+    let t = 0; if (len2 > 0) t = (wx*vx + wy*vy) / len2;
+    t = Math.max(0, Math.min(1, t));
+    const px = p1.x + t*vx, py = p1.y + t*vy;
+    const dx = px - c.x, dy = py - c.y;
+    return (dx*dx + dy*dy) <= r*r;
+  }
+
+  const getCSS = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  // Loop
+  let isRunning = false;
+  let last = 0;
+  function loop(now){
+    if (!last) last = now;
+    if (isRunning && !phase) startStep(now);
+    update(now);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  function updateBtn(){ playPauseBtn.textContent = isRunning ? '❚❚ Pause' : '▶ Start'; }
+
+  // Events
+  playPauseBtn.addEventListener('click', () => { isRunning = !isRunning; if (!isRunning) phase = null; updateBtn(); });
+  dirCW.addEventListener('change', () => {});
+  dirCCW.addEventListener('change', () => {});
+
+  standoff.addEventListener('input', () => {
+    standoffFactor = +standoff.value; standoffLabel.textContent = `${Math.round(standoffFactor*100)}% of cone distance`;
+    computeCorners(); snapPlayers();
+  });
+  runSpeed.addEventListener('input', () => {
+    runSpeedMult = +runSpeed.value; runSpeedLabel.textContent = `${(+runSpeed.value).toFixed(2)}×`;
+  });
+  moveDelay.addEventListener('input', () => {
+    moveDelayMs = +moveDelay.value; moveDelayLabel.textContent = `${moveDelayMs} ms`;
+  });
+  radiusInput.addEventListener('input', () => {
+    zoneFactor = +radiusInput.value; radiusLabel.textContent = `${Math.round(zoneFactor*100)}% of cone distance`;
+  });
+
+  // Init
+  function init(){
+    setCanvasSize();
+    computeCorners();
+    snapPlayers();
+    standoffLabel.textContent = `${Math.round(standoffFactor*100)}% of cone distance`;
+    runSpeedLabel.textContent = `${runSpeedMult.toFixed(2)}×`;
+    moveDelayLabel.textContent = `${moveDelayMs} ms`;
+    radiusLabel.textContent = `${Math.round(zoneFactor*100)}% of cone distance`;
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => {
+    DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+    setCanvasSize(); computeCorners(); snapPlayers();
+  });
+
+  init();
+})();
+</script>
+</body>
+</html>
